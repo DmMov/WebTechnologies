@@ -1,0 +1,64 @@
+.field {
+   position: relative;
+   &.filled .input {
+      border-color: $accent;
+   }
+
+   &.filled .input ~ .placeholder,
+   .input:focus ~ .placeholder
+   {
+      cursor: context-menu;
+      color: $accent;
+      font-size: 80%;
+      top: -15px;
+      left: 0;
+      &:hover, &:active {
+         cursor: text;
+      }
+   }
+
+   &.error {
+      .input, 
+      .input:focus {
+         border-color: $error; 
+      }
+      .placeholder {
+         color: $error !important;
+      }
+   }
+
+   .placeholder {
+      position: absolute;
+      font-size: 1em;
+      top: 11px;
+      left: 11px;
+      color: silver;
+      text-transform: capitalize;
+      transition: all .15s ease;
+
+      &:hover, &:active {
+         cursor: text;
+      }
+   }
+
+   .input {
+      border-bottom: 2px solid #f3f3f3;
+      border-radius: 0;
+      padding: 10px;
+      font-size: 1em;
+      width: 100%;
+      &:focus {
+         border-color: $accent;
+      }
+   }
+
+   .error-text {
+      display: block;
+      font-size: 80%;
+      color: $error;
+
+      &::first-letter {
+         text-transform: capitalize;
+      }
+   }
+}

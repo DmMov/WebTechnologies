@@ -1,0 +1,14 @@
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\bin\Debug\netcoreapp2.1\Back.deps.json
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\bin\Debug\netcoreapp2.1\Back.runtimeconfig.json
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\bin\Debug\netcoreapp2.1\Back.runtimeconfig.dev.json
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\bin\Debug\netcoreapp2.1\Back.dll
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\bin\Debug\netcoreapp2.1\Back.pdb
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.csprojAssemblyReference.cache
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.csproj.CoreCompileInputs.cache
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.RazorAssemblyInfo.cache
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.RazorAssemblyInfo.cs
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.AssemblyInfoInputs.cache
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.AssemblyInfo.cs
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.RazorTargetAssemblyInfo.cache
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.dll
+C:\Users\cifer\OneDrive\Робочий стіл\HoneyCombTest\Back\Back\obj\Debug\netcoreapp2.1\Back.pdb

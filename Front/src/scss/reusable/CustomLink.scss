@@ -1,0 +1,14 @@
+.link {
+   text-transform: uppercase;
+   padding: $gap;
+   font-family: 'Montserrat', sans-serif;
+   position: relative;
+
+   &.active {
+      color: $accent;
+   }
+
+   &:hover {
+      color: $accent;
+   }
+}
