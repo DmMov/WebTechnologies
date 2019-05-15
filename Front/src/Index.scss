@@ -1,5 +1,5 @@
 @import 'scss/variables';
-@import 'scss/normalize';
+@import 'scss/_normalize.sass';
 @import 'scss/helpers';
 @import 'scss/ant_overriding';
 @import 'scss/reusable/reusable';
@@ -7,6 +7,6 @@
 @import 'scss/Form';
 @import 'scss/Header';
 @import 'scss/Message';
-@import 'scss/Error';
+@import 'scss/Error.sass';
 @import 'scss/Admin';
 

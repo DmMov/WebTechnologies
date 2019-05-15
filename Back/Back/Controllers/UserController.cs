@@ -44,7 +44,7 @@ namespace Back.Controllers
                 {
                     BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin in a month"), parsedStudyDate.AddMonths(-1));
                 }
-                BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin tomorrow"), new DateTime(parsedStudyDate.Year, parsedStudyDate.Month, parsedStudyDate.Day, 8, 0, 0));
+                BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin tomorrow"), new DateTime(parsedStudyDate.Year, parsedStudyDate.Month, parsedStudyDate.Day - 1, 8, 0, 0));
                 user.StudyDate = studyDate;
                 userDataService.UpdateUser(user);
                 return Ok(user.StudyDate);

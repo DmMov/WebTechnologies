@@ -73,15 +73,6 @@ namespace Back
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseStaticFiles();
-
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "Static")),
-                RequestPath = "/Static"
-            });
-
             app.UseAuthentication();
             app.UseCors("CorsPolicy");
             app.UseHangfireDashboard();

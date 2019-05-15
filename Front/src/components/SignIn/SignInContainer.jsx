@@ -26,7 +26,6 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
          errorText: 'password has to be at least 5 characters'
       }
    }
-   
    const onSubmit = e => {
       e.preventDefault();
       const dataKeys = Object.keys(data);
