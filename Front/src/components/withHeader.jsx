@@ -21,11 +21,12 @@ const withHeader = Component => {
       return (
          <>
             <Header 
-               {...props} 
                fullName={fullName}
                onSignOut={onSignOut} 
             />
-            <Component />
+            <Component 
+               {...props} 
+            />
          </>
       );
    }
