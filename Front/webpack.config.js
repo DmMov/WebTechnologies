@@ -15,7 +15,7 @@ const config = {
         bundle:[ 
             '@babel/polyfill',
             './Index.js',
-            './Index.scss'
+            './Index.sass'
         ],
     },
     output: {
@@ -43,7 +43,7 @@ const config = {
 
             /* --- scss ---*/
             {
-                test: /\.s?css/,
+                test: /\.sass/,
                 use: ExtractTextPlugin.extract({
                     use:[
                         {
