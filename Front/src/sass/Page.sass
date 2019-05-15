@@ -1,63 +1,41 @@
-@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
-.page {
-   align-content: center;
-   justify-content: center;
-   min-height: 100vh;
-   padding: 50px 0;
-
-   &.admin-page {
-      align-content: start;
-   }
-
-   &.user-page {
-      .current-study-date {
-         text-transform: capitalize;
-         color: darken($gray, 10%);
-         text-align: center;
-      }
-
-      .pick-study-date {
-         box-shadow: 0 0 34px rgba(black, .075);
-         padding: $gap;
-         width: 320px;
-         text-align: center;
-         
-         .choose-date-title {
-            text-transform: capitalize;
-         }
-         .text {
-            text-transform: capitalize;
-            color: darken($gray, 10%);
-         }
-      }
-      
-      
-   }
-   .sign-out-btn, .btn.cancel-btn {
-      &:hover {
-         border-color: $error;
-         color: $error;
-      }
-   }
-   &.not-found-page {
-      padding: 0 15vw;
-      justify-items: center;
-      .link {
-         text-transform: uppercase;
-         padding: $gap;
-         border: 1px solid $gray;
-         border-radius: 2px;
-         font-family: 'Montserrat', sans-serif;
-         transition: all 0.15s ease;
-         color: #595959;
-
-         &:hover {
-            cursor: pointer;
-            border-color: $accent;
-            color: $accent;
-         }
-      }
-   }
-
-}
-
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script')
+.page 
+   align-content: center
+   justify-content: center
+   min-height: 100vh
+   padding: 50px 0
+   &.admin-page 
+      align-content: start
+   &.user-page 
+      .current-study-date 
+         text-transform: capitalize
+         color: darken($gray, 10%)
+         text-align: center
+      .pick-study-date 
+         box-shadow: 0 0 34px rgba(black, .075)
+         padding: $gap
+         width: 320px
+         text-align: center
+         .choose-date-title, .text 
+            text-transform: capitalize
+         .text 
+            color: darken($gray, 10%)
+   .sign-out-btn, .btn.cancel-btn 
+      &:hover 
+         border-color: $error
+         color: $error
+   &.not-found-page 
+      padding: 0 15vw
+      justify-items: center
+      .link 
+         text-transform: uppercase
+         padding: $gap
+         border: 1px solid $gray
+         border-radius: 2px
+         font-family: 'Montserrat', sans-serif
+         transition: all 0.15s ease
+         color: #595959
+         &:hover 
+            cursor: pointer
+            border-color: $accent
+            color: $accent
