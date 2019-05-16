@@ -13,8 +13,6 @@ import UnconfirmedEmailMessage from '../Message/UnconfirmedEmailMessage';
 import withHeader from '../withHeader';
 import { disabledDate } from '../../assets/constants/disabledDate';
 
-
-
 const PickStudyDateContainer = ({ user, changeStudyDate, setIsLoading }) => {
    const [date, setDate] = useState('');
    const { studyDate, emailConfirmed } = user;

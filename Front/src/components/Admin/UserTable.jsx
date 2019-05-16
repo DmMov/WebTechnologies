@@ -2,11 +2,12 @@ import React from 'react';
 import { bool } from 'prop-types';
 import { columns_type, user_list_type } from '../../Prop-types';
 import { Table } from 'antd';
+import { columns } from 'assets/constants/columns';
 
-const UserTable = ({ isLoading, columns, users }) => (
+const UserTable = ({ isLoading, users }) => (
    <Table 
       loading={isLoading}
-      pagination={{ pageSize: 8 }} 
+      pagination={{ pageSize: 15 }} 
       columns={columns} 
       dataSource={users} 
       rowKey={({ index }) => index} 
