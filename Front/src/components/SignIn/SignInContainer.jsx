@@ -11,6 +11,7 @@ import { domain } from 'domain';
 import SignIn from './SignIn';
 import { isEmail } from 'validator';
 import { signInOtherInfo } from 'assets/constants/signInOtherInfo'
+import { generateFormFields } from 'assets/constants/generateFormFields';
 
 const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign In'; 
