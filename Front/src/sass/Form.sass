@@ -1,3 +1,13 @@
+=button
+   text-transform: uppercase
+   border: 1px solid $gray
+   border-radius: 4px
+   font-family: 'Montserrat', sans-serif
+   transition: all 0.15s ease
+   &:hover 
+      cursor: pointer
+      border-color: $accent
+      color: $accent
 .form 
    position: relative
    padding: $gap
@@ -9,20 +19,12 @@
       text-transform: capitalize
    .email-field 
       margin-top: 10px
-   .sub-btn, a 
-      text-transform: uppercase
-      border: 1px solid $gray
-      border-radius: 2px
-      font-family: 'Montserrat', sans-serif
-      transition: all 0.15s ease
-      &:hover 
-         cursor: pointer
-         border-color: $accent
-         color: $accent
    .sub-btn 
+      +button
       padding: $gap
       font-weight: bold
    a 
+      +button
       position: absolute
       top: 20px
       right: 20px

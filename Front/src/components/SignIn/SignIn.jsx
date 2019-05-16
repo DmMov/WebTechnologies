@@ -6,7 +6,7 @@ import { sign_in_data_type } from '../../Prop-types';
 import Form from '../_reusable/Form';
 import withSpin from '../withSpin';
 
-const SignIn = ({ data, errors, setValue, onSubmit }) => (
+const SignIn = ({ fields, onSubmit }) => (
    <Form 
       formClass="sign-in-form" 
       title="sign in" 
@@ -14,28 +14,21 @@ const SignIn = ({ data, errors, setValue, onSubmit }) => (
       onSubmit={onSubmit}
    >
       <Link to="/sign-up" label="create new account" />
-      <Field 
-         name="email" 
-         value={data.email} 
-         error={errors.email} 
-         setValue={setValue}
-         placeholder="email"
-      />
-      <Field 
-         name="password" 
-         value={data.password} 
-         error={errors.password} 
-         type="password" 
-         setValue={setValue}
-         placeholder="password"
-      />
+      {fields.map(({ name, value, error, placeholder, setValue, type}, i) => (
+         <Field 
+            key={i}
+            name={name} 
+            value={value} 
+            error={error} 
+            type={type} 
+            setValue={setValue}
+            placeholder={placeholder}
+         />
+      ))}
    </Form>
 );
 
 SignIn.propTypes = {
-   data: sign_in_data_type,
-   errors: sign_in_data_type,
-   setValue: func.isRequired,
    onSubmit: func.isRequired,
 }
 

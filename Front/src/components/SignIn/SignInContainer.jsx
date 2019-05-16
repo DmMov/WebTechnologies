@@ -7,9 +7,11 @@ import { setUserData } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
 import { sign_in_data_type } from '../../Prop-types';
 import Axios from 'axios';
-import { domain } from '../../domain';
+import { domain } from 'domain';
 import SignIn from './SignIn';
 import { isEmail } from 'validator';
+import { signInOtherInfo } from 'assets/constants/signInOtherInfo'
+import { generateFormFields } from 'assets/constants/generateFormFields';
 
 const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign In'; 
@@ -26,6 +28,8 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
          errorText: 'password has to be at least 5 characters'
       }
    }
+   const fields = generateFormFields(data, errors, setValue, signInOtherInfo);
+
    const onSubmit = e => {
       e.preventDefault();
       const dataKeys = Object.keys(data);
@@ -55,9 +59,7 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
    };
    return (
       <SignIn 
-         data={data} 
-         setValue={setValue}
-         errors={errors}
+         fields={fields}
          onSubmit={onSubmit}
       />
    );

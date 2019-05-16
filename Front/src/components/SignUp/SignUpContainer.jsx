@@ -10,7 +10,8 @@ import { sign_up_data_type } from '../../Prop-types';
 import Axios from 'axios';
 import { domain } from '../../domain';
 import { isEmail } from 'validator'; 
-
+import { generateFormFields } from '../../assets/constants/generateFormFields';
+import { signUpOtherInfo } from '../../assets/constants/signUpOtherInfo';
 
 const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign Up';
@@ -35,14 +36,12 @@ const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, valid
          errorText: 'age cannot be zero or less'
       }
    };
-
+   const fields = generateFormFields(data, errors, setValue, signUpOtherInfo);
    const onSubmit = e => {
       e.preventDefault();
-
       const dataKeys = Object.keys(data);
       const validateResults = dataKeys.map(item => item && validate(item, data[item], !!validateParams[item] && validateParams[item]));
       const isValid = validateResults.find(value => value == false) != false && true;
-
       if (isValid) {
          setIsLoading(true);
          Axios.post(`${domain}auth/registration`, data)
@@ -67,9 +66,7 @@ const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, valid
 
    return (
       <SignUp 
-         data={data} 
-         errors={errors}
-         setValue={setValue}
+         fields={fields}
          onSubmit={onSubmit}
       />
    );
