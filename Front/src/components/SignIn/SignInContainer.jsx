@@ -1,7 +1,7 @@
 import React from 'react';
 import { func } from 'prop-types';
 import { connect } from 'react-redux';
-import Cookies from 'js-cookie';
+import { set } from 'js-cookie';
 import withForm from '../withForm';
 import { setUserData } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
@@ -12,6 +12,7 @@ import SignIn from './SignIn';
 import { isEmail } from 'validator';
 import { signInOtherInfo } from 'assets/constants/signInOtherInfo'
 import { generateFormFields } from 'assets/constants/generateFormFields';
+import { postRequest } from '../../assets/services/request.service';
 
 const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign In'; 
@@ -30,6 +31,17 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
    }
    const fields = generateFormFields(data, errors, setValue, signInOtherInfo);
 
+   const onSuccess = (data) => {
+      set('user', data, { expires: 7 });
+      set('token', data.token, { expires: 7 });
+      setUserData(data);
+   }
+   const onError = (error) => {
+      setErrors(() => ({
+         email: 'there is something wrong',
+         password: 'or maybe there is something wrong here'
+      }));
+   }
    const onSubmit = e => {
       e.preventDefault();
       const dataKeys = Object.keys(data);
@@ -38,24 +50,9 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
 
       if (isValid) {
          setIsLoading(true);
-         Axios.post(`${domain}auth/login`, data)
-         .then(({ data }) => {
-            Cookies.set('user', data, { expires: 7 });
-            Cookies.set('token', data.token, { expires: 7 });
-            setIsLoading(false);
-            setUserData(data);
-         })
-         .catch(error => {
-            if(!!error.response) {
-               setIsLoading(false);
-               setErrors(() => ({
-                  email: 'there is something wrong',
-                  password: 'or maybe there is something wrong here'
-               }));
-            }
-         });
+         postRequest('auth/login', data, onSuccess, onError, null);
+         setIsLoading(false);
       }
-      
    };
    return (
       <SignIn 

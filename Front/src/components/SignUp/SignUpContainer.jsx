@@ -7,17 +7,13 @@ import withForm from '../withForm';
 import { setUserData } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
 import { sign_up_data_type } from '../../Prop-types';
-import Axios from 'axios';
-import { domain } from '../../domain';
 import { isEmail } from 'validator'; 
 import { generateFormFields } from '../../assets/constants/generateFormFields';
 import { signUpOtherInfo } from '../../assets/constants/signUpOtherInfo';
 
 const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign Up';
-
    const { email, password, repeat, age } = data;
-   
    const validateParams = {
       email: {
          condition: !isEmail(email),
@@ -37,6 +33,19 @@ const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, valid
       }
    };
    const fields = generateFormFields(data, errors, setValue, signUpOtherInfo);
+   const onSuccess = (data) => {
+      Cookies.set('user', data, { expires: 7 });
+      Cookies.set('token', data.token, { expires: 7 });
+      setUserData(data);
+   }
+   const onError = (error) => {
+      if (error.status == 422) {
+         setErrors(errors => ({
+            ...errors,
+            email: error.response.data
+         }))
+      }
+   }
    const onSubmit = e => {
       e.preventDefault();
       const dataKeys = Object.keys(data);
@@ -44,32 +53,11 @@ const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, valid
       const isValid = validateResults.find(value => value == false) != false && true;
       if (isValid) {
          setIsLoading(true);
-         Axios.post(`${domain}auth/registration`, data)
-         .then(({ data }) => {
-            Cookies.set('user', data, { expires: 7 });
-            Cookies.set('token', data.token, { expires: 7 });
-            setIsLoading(false);
-            setUserData(data);
-         })
-         .catch(error => {
-            !!error.response && console.log(error.response);
-            setIsLoading(false);
-            if (error.response.status == 422) {
-               setErrors(errors => ({
-                  ...errors,
-                  email: error.response.data
-               }))
-            }
-         });
+         postRequest('auth/registration', data, onSuccess, onError, null);
+         setIsLoading(false);
       }
    };
-
-   return (
-      <SignUp 
-         fields={fields}
-         onSubmit={onSubmit}
-      />
-   );
+   return <SignUp fields={fields} onSubmit={onSubmit} />
 }
 
 SignUpContainer.propTypes = {
@@ -91,7 +79,6 @@ const initialState = {
 const WrappedSignUpContainer = withForm(initialState, initialState)(SignUpContainer);
 
 const mapStateToProps = ({ general: { isLoading } }) => ({ isLoading });
-
 const mapDispatchToProps = { setUserData, setIsLoading };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WrappedSignUpContainer);

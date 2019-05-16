@@ -1,12 +1,24 @@
-import { get } from 'axios'
+import { get, post } from 'axios'
 import { domain } from '../../domain';
-export const getRequest = (url, onSuccess, onError, token) => {
-  const headers = !!token ? { 
+
+const getHeaders = (token) => (
+  !!token ? { 
     headers: { 
       Authorization: `Bearer ${token}`
     } 
-  } : null;
+  } : null
+);
+
+export const getRequest = (url, onSuccess, onError, token) => {
+  const headers = getHeaders(token);
   get(domain + url, !!headers && headers)
+    .then(({ data }) => onSuccess(data))
+    .catch(error => !!error.response && onError(error.response))
+}
+
+export const postRequest = (url, data, onSuccess, onError, token) => {
+  const headers = getHeaders(token);
+  post(domain + url, data, !!headers && headers)
     .then(({ data }) => onSuccess(data))
     .catch(error => !!error.response && onError(error.response))
 }
