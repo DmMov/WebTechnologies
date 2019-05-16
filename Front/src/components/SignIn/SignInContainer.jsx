@@ -59,9 +59,7 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
    };
    return (
       <SignIn 
-         data={data} 
-         setValue={setValue}
-         errors={errors}
+         fields={fields}
          onSubmit={onSubmit}
       />
    );
