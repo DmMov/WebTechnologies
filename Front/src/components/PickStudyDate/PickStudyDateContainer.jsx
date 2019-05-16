@@ -7,15 +7,13 @@ import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
 import { changeStudyDate } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
-import moment from 'moment';
 import { domain } from '../../domain';
 import { func } from 'prop-types';
 import UnconfirmedEmailMessage from '../Message/UnconfirmedEmailMessage';
 import withHeader from '../withHeader';
+import { disabledDate } from '../../assets/constants/disabledDate';
 
-const disabledDate = current => {
-   return current && current < moment().endOf('day').add(1, 'day') || current > moment().endOf('day').add(3, 'month');
-}
+
 
 const PickStudyDateContainer = ({ user, changeStudyDate, setIsLoading }) => {
    const [date, setDate] = useState('');
