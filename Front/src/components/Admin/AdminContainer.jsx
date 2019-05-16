@@ -1,25 +1,26 @@
 import React, { useEffect } from 'react';
 import Admin from './Admin';
-import Axios from 'axios';
 import { connect } from 'react-redux'
-import { domain } from '../../domain';
 import { setUsers } from '../../store/users/actions';
 import { setIsLoading } from '../../store/actions';
 import Cookies from 'js-cookie';
 import withHeader from '../withHeader';
 import { user_list_type } from '../../Prop-types';
 import { func, bool } from 'prop-types';
+import { getRequest } from '../../assets/services/request.service';
 
 const AdminContainer = ({ users, setUsers, isLoading, setIsLoading }) => {
+   const onSuccess = (data) => {
+      setUsers(data);
+      setIsLoading(false);
+   }
+   const onError = (error) => {
+      console.log(error)
+   }
    useEffect(() => {
       setIsLoading(true);
       const token = Cookies.getJSON('token');
-      Axios.get(`${domain}admin`, { headers: { Authorization: "Bearer " + token } })
-      .then(({ data }) => {
-         setUsers(data);
-         setIsLoading(false);
-      })
-      .catch(error => !!error.response && console.log(error.response))
+      getRequest('admin', onSuccess, onError, !!token ? token : null);
    }, []);
    
    return (
