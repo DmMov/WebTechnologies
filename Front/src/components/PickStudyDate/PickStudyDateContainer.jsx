@@ -10,7 +10,7 @@ import { setIsLoading } from '../../store/actions';
 import { func } from 'prop-types';
 import UnconfirmedEmailMessage from '../Message/UnconfirmedEmailMessage';
 import withHeader from '../withHeader';
-import { disabledDate } from '../../assets/constants/disabledDate';
+import { disabledDate } from '../../assets/constants/functions/disabledDate';
 import { putRequest } from '../../assets/services/request.service';
 
 const PickStudyDateContainer = ({ user, changeStudyDate, setIsLoading }) => {

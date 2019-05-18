@@ -8,8 +8,8 @@ import { setUserData } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
 import { sign_up_data_type } from '../../Prop-types';
 import { isEmail } from 'validator'; 
-import { generateFormFields } from '../../assets/constants/generateFormFields';
-import { signUpOtherInfo } from '../../assets/constants/signUpOtherInfo';
+import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
+import { signUpOtherInfo } from '../../assets/constants/data/signUpOtherInfo';
 
 const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign Up';

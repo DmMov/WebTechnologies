@@ -6,12 +6,10 @@ import withForm from '../withForm';
 import { setUserData } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
 import { sign_in_data_type } from '../../Prop-types';
-import Axios from 'axios';
-import { domain } from '../../domain';
 import SignIn from './SignIn';
 import { isEmail } from 'validator';
-import { signInOtherInfo } from 'assets/constants/signInOtherInfo'
-import { generateFormFields } from 'assets/constants/generateFormFields';
+import { signInOtherInfo } from 'assets/constants/data/signInOtherInfo'
+import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
 import { postRequest } from '../../assets/services/request.service';
 
 const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {

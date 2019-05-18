@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 import { func } from 'prop-types';
-import { sortOptionsData } from '../../assets/constants/sortOptionsData';
+import { sortOptions } from '../../assets/constants/data/sortOptions';
 
 const { Option } = Select;
 
@@ -14,7 +14,7 @@ const Sort = ({ onChange }) => (
       onChange={onChange}
    >
       {
-         sortOptionsData.map(({ value, text }, i) => (
+         sortOptions.map(({ value, text }, i) => (
             <Option key={i} value={value} >{text}</Option>
          ))
       }

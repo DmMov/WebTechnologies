@@ -5,8 +5,8 @@ import Page from './_reusable/Page';
 import { user_type } from '../Prop-types';
 import ConfirmationControl from './ConfirmationControl';
 import NotFound from './Error/NotFound';
-import { redirectCheck } from '../assets/constants/redirectCheck';
-import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/constants/routesParams';
+import { redirectCheck } from '../assets/constants/functions/redirectCheck';
+import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/constants/data/routesParams';
 
 const App = ({ user }) => (
    <Router>

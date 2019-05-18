@@ -2,7 +2,7 @@ import React from 'react';
 import { bool } from 'prop-types';
 import { columns_type, user_list_type } from '../../Prop-types';
 import { Table } from 'antd';
-import { columns } from 'assets/constants/columns';
+import { columns } from 'assets/constants/data/columns';
 
 const UserTable = ({ isLoading, users }) => (
    <Table 

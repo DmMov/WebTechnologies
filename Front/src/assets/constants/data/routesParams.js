@@ -1,7 +1,7 @@
-import PickStudyDateContainer from "../../components/PickStudyDate/PickStudyDateContainer";
-import AdminContainer from "../../components/Admin/AdminContainer";
-import SignUpContainer from "../../components/SignUp/SignUpContainer";
-import SignInContainer from "../../components/SignIn/SignInContainer";
+import PickStudyDateContainer from "../../../components/PickStudyDate/PickStudyDateContainer";
+import AdminContainer from "../../../components/Admin/AdminContainer";
+import SignUpContainer from "../../../components/SignUp/SignUpContainer";
+import SignInContainer from "../../../components/SignIn/SignInContainer";
 
 export const rootRoute = {
   Component: SignInContainer,

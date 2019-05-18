@@ -1,4 +1,4 @@
-export const sortOptionsData = [
+export const sortOptions = [
   {
     value: 'registered-date',
     text: 'Sort By Registered Date ↑'
