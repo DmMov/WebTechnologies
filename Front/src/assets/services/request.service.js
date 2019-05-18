@@ -1,4 +1,4 @@
-import { get, post } from 'axios'
+import { get, post, put } from 'axios'
 import { domain } from '../../domain';
 
 const getHeaders = (token) => (
@@ -20,5 +20,12 @@ export const postRequest = (url, data, onSuccess, onError, token) => {
   const headers = getHeaders(token);
   post(domain + url, data, !!headers && headers)
     .then(({ data }) => onSuccess(data))
-    .catch(error => !!error.response && onError(error.response))
+    .catch(error => !!error.response && onError(error.response));
+}
+
+export const putRequest = (url, data, onSuccess, onError, token) => {
+  const headers = getHeaders(token);
+  put(domain + url, data, !!headers && headers)
+    .then(({ data }) => onSuccess(data))
+    .catch(error => !!error.response && onError(error.response));
 }
