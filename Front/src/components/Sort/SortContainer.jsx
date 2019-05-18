@@ -1,31 +1,28 @@
 import React from 'react';
 import Sort from './Sort';
-import Axios from 'axios';
-import { domain } from '../../domain';
 import { connect } from 'react-redux'
 import { setUsers, setSort } from '../../store/users/actions';
 import { setIsLoading } from '../../store/actions';
-import Cookies from 'js-cookie';
+import { get } from 'js-cookie';
 import { string, func } from 'prop-types';
+import { getRequest } from '../../assets/services/request.service';
 
 const SortContainer = ({ searchStr, setSort, setUsers, setIsLoading }) => {
+   const onSuccess = data => {
+      setSort(value);
+      setUsers(data);
+      setIsLoading(false);
+   }
+   const onError = error => {
+      console.log(error);
+   }
    const onChange = value => {
       setIsLoading(true);
-      const token = Cookies.getJSON('token');
-      Axios.get(`${domain}admin/sort/${value}/${searchStr ? searchStr : 'empty'}`, { headers: { Authorization: "Bearer " + token } })
-      .then(({ data }) => {
-         setSort(value);
-         setUsers(data);
-         setIsLoading(false);
-      })
-      .catch(error => !!error.response && console.log(error.response));
+      const token = get('token');
+      getRequest(`admin/sort/${value}/${searchStr ? searchStr : 'empty'}`, onSuccess, onError, token);
    }
 
-   return (
-      <Sort 
-         onChange={onChange} 
-      />
-   );
+   return <Sort onChange={onChange} />
 };
 
 SortContainer.propTypes = {
