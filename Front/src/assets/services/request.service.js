@@ -1,5 +1,5 @@
 import { get, post, put } from 'axios'
-import { domain } from '../../domain';
+import { api } from '../constants/api';
 
 const getHeaders = (token) => (
   !!token ? { 
@@ -11,21 +11,21 @@ const getHeaders = (token) => (
 
 export const getRequest = (url, onSuccess, onError, token) => {
   const headers = getHeaders(token);
-  get(domain + url, !!headers && headers)
+  get(api + url, !!headers && headers)
     .then(({ data }) => onSuccess(data))
     .catch(error => !!error.response && onError(error.response))
 }
 
 export const postRequest = (url, data, onSuccess, onError, token) => {
   const headers = getHeaders(token);
-  post(domain + url, data, !!headers && headers)
+  post(api + url, data, !!headers && headers)
     .then(({ data }) => onSuccess(data))
     .catch(error => !!error.response && onError(error.response));
 }
 
 export const putRequest = (url, data, onSuccess, onError, token) => {
   const headers = getHeaders(token);
-  put(domain + url, data, !!headers && headers)
+  put(api + url, data, !!headers && headers)
     .then(({ data }) => onSuccess(data))
     .catch(error => !!error.response && onError(error.response));
 }

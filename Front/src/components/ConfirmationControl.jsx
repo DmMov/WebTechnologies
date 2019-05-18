@@ -4,7 +4,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Icon } from 'antd';
 import { withRouter, Redirect } from 'react-router-dom';
-import { domain } from '../domain';
+import { putRequest } from '../assets/services/request.service';
 
 const ConfirmationControl = ({ match }) => {
    const [status, setStatus] = useState('');
@@ -12,9 +12,7 @@ const ConfirmationControl = ({ match }) => {
    const { userId, confCode } = match.params;
 
    useEffect(() => {
-      axios.put(`${domain}user/confirm-email/${userId}/${confCode}`)
-      .then(() => setStatus('success'))
-      .catch(() => setStatus('error'));
+      putRequest(`user/confirm-email/${userId}/${confCode}`, data => setStatus('success'), error => setStatus('error') )
    }, []);
 
    switch (status) {

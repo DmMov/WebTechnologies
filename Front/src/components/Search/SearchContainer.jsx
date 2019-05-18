@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import SearchUsers from './Search';
-import Axios from 'axios';
-import { domain } from '../../domain';
 import { setUsers, setSearch } from '../../store/users/actions';
 import { connect } from 'react-redux';
-import Cookies from 'js-cookie';
+import { get } from 'js-cookie';
 import { setIsLoading } from '../../store/actions';
 import { string, func } from 'prop-types';
+import { getRequest } from '../../assets/services/request.service';
 
 const SearchContainer = ({searchStr, sortBy, setSearch, setUsers, setIsLoading }) => {
+   const onSuccess = data => {
+      setUsers(data);
+      setIsLoading(false);
+   }
+   const onError = error => {
+      console.log(error)
+   }
    const onSearch = (e) => {
       e.preventDefault();
       if (!!searchStr) {
          setIsLoading(true);
-         const token = Cookies.getJSON('token');
-         Axios.get(`${domain}admin/search/${searchStr}/${sortBy ? sortBy : 'empty'}`, { headers: { Authorization: "Bearer " + token }})
-         .then(({ data }) => {
-            setUsers(data);
-            setIsLoading(false);
-         })
-         .catch(error => !!error.response && console.log(error.response));
+         const token = get('token');
+         getRequest(`admin/search/${searchStr}/${sortBy ? sortBy : 'empty'}`, onSuccess, onError, token)
       }
    }
    
