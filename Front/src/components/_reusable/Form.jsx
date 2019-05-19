@@ -1,7 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 import { string, func } from 'prop-types';
-import { Alert } from 'antd';
 
 const Form = ({ formClass, onSubmit, children, buttonText, title }) => (
    <form 

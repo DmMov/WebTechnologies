@@ -1,27 +1,27 @@
 import React from 'react';
 import { string, bool } from 'prop-types';
-import { Link, Route } from 'react-router-dom';
+import { Link as RouterLink, Route } from 'react-router-dom';
 import cx from 'classnames';
 
-const CustomLink = ({ label, to, active }) => (
+const Link = ({ label, to, active }) => (
    <Route 
       path={to}
       exact={active}
-      children={({match}) => (
-         <Link 
+      children={({ match }) => (
+         <RouterLink 
             className={cx('link', !!match && 'active')} 
             to={to}
          >
             {label}
-         </Link>
+         </RouterLink>
       )}
    />
 );
 
-CustomLink.propTypes = {
+Link.propTypes = {
    label: string.isRequired,
    to: string.isRequired,
    active: bool
 }
 
-export default CustomLink;
+export default Link;

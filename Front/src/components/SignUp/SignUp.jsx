@@ -1,11 +1,9 @@
 import React from 'react';
-import { func } from 'prop-types';
 import Field from '../_reusable/Field';
-import Link from '../_reusable/CustomLink';
-import { sign_up_data_type } from '../../Prop-types';
+import Link from '../_reusable/Link';
 import Form from '../_reusable/Form';
 import withSpin from '../withSpin';
-import { FormPropTypes } from '../../assets/prop-types/Form.prop-types';
+import { FormsPropTypes } from '../../assets/prop-types/Form.prop-types';
 
 const SignUp = ({ fields, onSubmit }) => (
    <Form 
@@ -32,6 +30,6 @@ const SignUp = ({ fields, onSubmit }) => (
    </Form>
 );
 
-SignUp.propTypes = FormPropTypes;
+SignUp.propTypes = FormsPropTypes;
 
 export default withSpin(SignUp);
