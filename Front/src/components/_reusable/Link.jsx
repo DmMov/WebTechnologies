@@ -1,7 +1,7 @@
 import React from 'react';
-import { string, bool } from 'prop-types';
 import { Link as RouterLink, Route } from 'react-router-dom';
 import cx from 'classnames';
+import { LinkPropTypes } from '../../assets/prop-types/Link.prop-types';
 
 const Link = ({ label, to, active }) => (
    <Route 
@@ -18,10 +18,6 @@ const Link = ({ label, to, active }) => (
    />
 );
 
-Link.propTypes = {
-   label: string.isRequired,
-   to: string.isRequired,
-   active: bool
-}
+Link.propTypes = LinkPropTypes;
 
 export default Link;

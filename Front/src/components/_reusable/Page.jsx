@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { string } from 'prop-types';
+import { PagePropTypes } from '../../assets/prop-types/Page.prop-types';
 
 const Page = ({pageClass, children}) => (
    <div className={cx('page', 'grid', !!pageClass && pageClass)}>
@@ -8,8 +8,6 @@ const Page = ({pageClass, children}) => (
    </div>
 );
 
-Page.propTypes = {
-   pageClass: string
-}
+Page.propTypes = PagePropTypes;
 
 export default Page;

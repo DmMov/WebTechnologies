@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { string, func } from 'prop-types';
+import { FormPropTypes } from '../../assets/prop-types/Form.prop-types';
 
 const Form = ({ formClass, onSubmit, children, buttonText, title }) => (
    <form 
@@ -18,12 +18,7 @@ const Form = ({ formClass, onSubmit, children, buttonText, title }) => (
    </form>
 );
 
-Form.propTypes = {
-   formClass: string,
-   onSubmit: func.isRequired,
-   buttonText: string,
-   title: string
-}
+Form.propTypes = FormPropTypes;
 
 Form.defaultProps = {
    title: 'title',

@@ -1,6 +1,6 @@
 import React from 'react';
-import { string, func } from 'prop-types';
 import cx from 'classnames';
+import { FieldPropTypes } from '../../assets/prop-types/Field.prop-types';
 
 const Field = ({ name, placeholder, value, error, type, setValue }) => (
    <label 
@@ -33,12 +33,6 @@ Field.defaultProps = {
    error: '',
 };
 
-Field.propTypes = {
-   name: string.isRequired,
-   placeholder: string.isRequired,
-   value: string.isRequired,
-   type: string.isRequired,
-   setValue: func.isRequired
-}
+Field.propTypes = FieldPropTypes;
 
 export default Field;
