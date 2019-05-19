@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { setUsers, setSort } from '../../store/users/actions';
 import { setIsLoading } from '../../store/actions';
 import { get } from 'js-cookie';
-import { string, func } from 'prop-types';
 import { getRequest } from '../../assets/services/request.service';
+import { SortContainerPropTypes } from '../../assets/prop-types/SortContainer.prop-types';
 
 const SortContainer = ({ searchStr, setSort, setUsers, setIsLoading }) => {
    const onSuccess = data => {
@@ -25,12 +25,7 @@ const SortContainer = ({ searchStr, setSort, setUsers, setIsLoading }) => {
    return <Sort onChange={onChange} />
 };
 
-SortContainer.propTypes = {
-   searchStr: string,
-   setSort: func.isRequired,
-   setUsers: func.isRequired,
-   setIsLoading: func.isRequired
-}
+SortContainer.propTypes = SortContainerPropTypes;
 
 const mapStateToProps = ({ users: { searchStr }}) => ({ searchStr });
 

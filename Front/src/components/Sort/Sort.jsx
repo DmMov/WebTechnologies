@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
-import { func } from 'prop-types';
 import { sortOptions } from '../../assets/constants/data/sortOptions';
+import { SortPropTypes } from '../../assets/prop-types/Sort.prop-types';
 
 const { Option } = Select;
 
@@ -21,8 +21,6 @@ const Sort = ({ onChange }) => (
    </Select>
 );
 
-Sort.propTypes = {
-   onChange: func.isRequired
-}
+Sort.propTypes = SortPropTypes;
 
 export default Sort;
