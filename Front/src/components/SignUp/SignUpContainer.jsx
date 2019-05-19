@@ -1,15 +1,14 @@
 import React from 'react';
-import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 import SignUp from './SignUp';
 import withForm from '../withForm';
 import { setUserData } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
-import { sign_up_data_type } from '../../Prop-types';
 import { isEmail } from 'validator'; 
 import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
 import { signUpOtherInfo } from '../../assets/constants/data/signUpOtherInfo';
+import { SignUpContainerPropTypes } from '../../assets/prop-types/SignUpContainet.prop-types';
 
 const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign Up';
@@ -60,12 +59,7 @@ const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, valid
    return <SignUp fields={fields} onSubmit={onSubmit} />
 }
 
-SignUpContainer.propTypes = {
-   data: sign_up_data_type,
-   errors: sign_up_data_type,
-   setValue: func.isRequired,
-   validate: func.isRequired,
-}
+SignUpContainer.propTypes = SignUpContainerPropTypes;
 
 const initialState = {
    email: '',
