@@ -1,6 +1,6 @@
 import React from 'react';
-import { number, string } from 'prop-types';
 import cx from 'classnames';
+import { ErrorPropTypes } from '../../assets/prop-types/Error.prop-type';
 
 const Error = ({ errorClass, code, title, message }) => (
    <div className={cx('error-container', !!errorClass && errorClass, 'grid')}>
@@ -10,11 +10,6 @@ const Error = ({ errorClass, code, title, message }) => (
    </div>
 );
 
-Error.propTypes = {
-   errorClass: string,
-   code: number,
-   title: string,
-   message: string
-}
+Error.propTypes = ErrorPropTypes;
 
 export default Error;
