@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Page from './_reusable/Page';
-import { user_type } from '../Prop-types';
 import ConfirmationControl from './ConfirmationControl';
 import NotFound from './Error/NotFound';
 import { redirectCheck } from '../assets/constants/functions/redirectCheck';
 import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/constants/data/routesParams';
+import { AppPropTypes } from '../assets/prop-types/App.prop-types';
 
 const App = ({ user }) => (
    <Router>
@@ -56,9 +56,7 @@ const App = ({ user }) => (
    </Router>
 );
 
-App.propTypes = {
-   user: user_type
-}
+App.propTypes = AppPropTypes;
 
 const mapStateToProps = ({ user }) => ({ user });
 
