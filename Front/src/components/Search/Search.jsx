@@ -1,7 +1,7 @@
 import React from 'react';
 import Field from '../_reusable/Field';
 import Form from '../_reusable/Form';
-import { string, func } from 'prop-types';
+import { SearchPropTypes } from '../../assets/prop-types/Search.prop-types';
 
 const Search = ({ value, setValue, onSubmit }) => (
    <Form 
@@ -19,10 +19,6 @@ const Search = ({ value, setValue, onSubmit }) => (
    </Form>
 );
 
-Search.propTypes = {
-   value: string.isRequired,
-   setValue: func.isRequired,
-   onSubmit: func.isRequired
-}
+Search.propTypes = SearchPropTypes;
 
 export default Search;

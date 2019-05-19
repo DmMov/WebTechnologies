@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SearchUsers from './Search';
 import { setUsers, setSearch } from '../../store/users/actions';
 import { connect } from 'react-redux';
 import { get } from 'js-cookie';
 import { setIsLoading } from '../../store/actions';
-import { string, func } from 'prop-types';
 import { getRequest } from '../../assets/services/request.service';
+import { SearchContainerPropTypes } from '../../assets/prop-types/SearchContainer.prop-types';
 
 const SearchContainer = ({searchStr, sortBy, setSearch, setUsers, setIsLoading }) => {
    const onSuccess = data => {
@@ -33,13 +33,7 @@ const SearchContainer = ({searchStr, sortBy, setSearch, setUsers, setIsLoading }
    );
 };
 
-SearchContainer.propTypes = {
-   searchStr: string.isRequired,
-   sortBy: string,
-   setSearch: func.isRequired,
-   setUsers: func.isRequired,
-   setIsLoading: func.isRequired
-}
+SearchContainer.propTypes = SearchContainerPropTypes;
 
 const mapStateToProps = ({ general: { isLoading }, users: { searchStr, sortBy } }) => ({ 
    isLoading, 
