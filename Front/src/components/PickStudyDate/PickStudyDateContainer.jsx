@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import ChosenDateMessage from '../Message/ChosenDateMessage';
 import PickStudyDate from './PickStudyDate';
-import { user_type } from '../../Prop-types';
-import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
 import { changeStudyDate } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
-import { func } from 'prop-types';
 import UnconfirmedEmailMessage from '../Message/UnconfirmedEmailMessage';
 import withHeader from '../withHeader';
 import { disabledDate } from '../../assets/constants/functions/disabledDate';
 import { putRequest } from '../../assets/services/request.service';
+import { PickStudyDateContainerPropTypes } from '../../assets/prop-types/PickStudyDateContainer.prop-types';
 
 const PickStudyDateContainer = ({ user, changeStudyDate, setIsLoading }) => {
    const [date, setDate] = useState('');
@@ -50,15 +48,9 @@ const PickStudyDateContainer = ({ user, changeStudyDate, setIsLoading }) => {
    } 
 };
 
-PickStudyDateContainer.propTypes = {
-   user: user_type,
-   changeStudyDate: func.isRequired,
-   setIsLoading: func.isRequired
-}
+PickStudyDateContainer.propTypes = PickStudyDateContainerPropTypes;
 
-const mapStateToProps = ({ user }) => ({ 
-   user 
-});
+const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = { 
    changeStudyDate,

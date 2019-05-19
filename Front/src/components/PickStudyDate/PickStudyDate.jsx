@@ -1,7 +1,7 @@
 import React from 'react';
-import { func, bool } from 'prop-types';
 import { DatePicker, Icon } from 'antd';
 import withSpin from '../withSpin';
+import { PickStudyDatePropTypes } from '../../assets/prop-types/PickStudyDate.prop-types';
 
 const PickStudyDate = ({ onDateChange, onConfirmDate, disabledDate, confirmIsVisible }) => (
    <div className="pick-study-date grid">
@@ -13,11 +13,6 @@ const PickStudyDate = ({ onDateChange, onConfirmDate, disabledDate, confirmIsVis
    </div>
 );
 
-PickStudyDate.propTypes = {
-   onDateChange: func.isRequired,
-   onConfirmDate: func.isRequired,
-   disabledDate: func.isRequired,
-   confirmIsVisible: bool.isRequired,
-};
+PickStudyDate.propTypes = PickStudyDatePropTypes;
 
 export default withSpin(PickStudyDate);
