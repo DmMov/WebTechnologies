@@ -5,6 +5,7 @@ import Link from '../_reusable/CustomLink';
 import { sign_up_data_type } from '../../Prop-types';
 import Form from '../_reusable/Form';
 import withSpin from '../withSpin';
+import { FormPropTypes } from '../../assets/prop-types/Form.prop-types';
 
 const SignUp = ({ fields, onSubmit }) => (
    <Form 
@@ -31,8 +32,6 @@ const SignUp = ({ fields, onSubmit }) => (
    </Form>
 );
 
-SignUp.propTypes = {
-   onSubmit: func.isRequired
-}
+SignUp.propTypes = FormPropTypes;
 
 export default withSpin(SignUp);
