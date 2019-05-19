@@ -1,6 +1,6 @@
 import React from 'react';
 import Message from './Message';
-import { string } from 'prop-types';
+import { ChosenDateMessagePropTypes } from '../../assets/prop-types/ChosenDateMessage.prop-types';
 
 const ChosenDateMessage = ({ studyDate }) => (
    <Message 
@@ -11,8 +11,6 @@ const ChosenDateMessage = ({ studyDate }) => (
    />
 );
 
-ChosenDateMessage.propTypes = {
-   studyDate: string
-}
+ChosenDateMessage.propTypes = ChosenDateMessagePropTypes;
 
 export default ChosenDateMessage;

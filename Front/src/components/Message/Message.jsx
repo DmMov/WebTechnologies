@@ -1,7 +1,7 @@
 import React from 'react';
-import { string } from 'prop-types';
 import cx from 'classnames';
 import { Icon } from 'antd';
+import { MessagePropTypes } from '../../assets/prop-types/Message.prop-types';
 
 const Message = ({ messageClass, iconType, title, messageText }) => (
    <div className={cx('message', messageClass, 'grid')}>
@@ -11,11 +11,6 @@ const Message = ({ messageClass, iconType, title, messageText }) => (
    </div>
 );
 
-Message.propTypes = {
-   messageClass: string,
-   iconType: string,
-   title: string,
-   messageText: string
-}
+Message.propTypes = MessagePropTypes;
 
 export default Message;
