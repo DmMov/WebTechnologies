@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import SuccessfulConfirmMessage from './Message/SuccessfulConfirmMessage';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Icon } from 'antd';
 import { withRouter, Redirect } from 'react-router-dom';
 import { putRequest } from '../assets/services/request.service';
+import { ConfirmationControlPropTypes } from '../assets/prop-types/ConfirmationControl.prop-types';
 
 const ConfirmationControl = ({ match }) => {
    const [status, setStatus] = useState('');
@@ -32,5 +32,7 @@ const ConfirmationControl = ({ match }) => {
          return <Icon type="loading" style={{ color: '#1890ff', fontSize: 50 }} />;
    }
 };
+
+ConfirmationControl.propTypes = ConfirmationControlPropTypes;
 
 export default withRouter(ConfirmationControl);
