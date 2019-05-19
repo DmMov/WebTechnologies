@@ -5,11 +5,10 @@ import { setUsers } from '../../store/users/actions';
 import { setIsLoading } from '../../store/actions';
 import Cookies from 'js-cookie';
 import withHeader from '../withHeader';
-import { user_list_type } from '../../Prop-types';
-import { func, bool } from 'prop-types';
 import { getRequest } from '../../assets/services/request.service';
+import { AdminContainerPropTypes } from '../../assets/prop-types/AdminContainer.prop-types';
 
-const AdminContainer = ({ users, setUsers, isLoading, setIsLoading }) => {
+const AdminContainer = ({ setUsers, setIsLoading }) => {
    const onSuccess = (data) => {
       setUsers(data);
       setIsLoading(false);
@@ -23,25 +22,12 @@ const AdminContainer = ({ users, setUsers, isLoading, setIsLoading }) => {
       getRequest('admin', onSuccess, onError, !!token ? token : null);
    }, []);
    
-   return (
-      <Admin 
-         users={users} 
-         isLoading={isLoading}
-      />
-   );
+   return <Admin />
 };
 
-AdminContainer.propTypes = {
-   users: user_list_type,
-   setUsers: func.isRequired,
-   isLoading: bool.isRequired,
-   setIsLoading: func.isRequired 
-}
+AdminContainer.propTypes = AdminContainerPropTypes;
 
-const mapStateToProps = ({ users: { list }, general: { isLoading } }) => ({ 
-   users: list, 
-   isLoading 
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = { 
    setUsers, 

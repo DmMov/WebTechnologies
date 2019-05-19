@@ -1,8 +1,8 @@
 import React from 'react';
-import { bool } from 'prop-types';
-import { columns_type, user_list_type } from '../../Prop-types';
 import { Table } from 'antd';
 import { columns } from 'assets/constants/data/columns';
+import { UserTablePropTypes } from '../../assets/prop-types/UserTable.prop-types';
+import { connect } from 'react-redux'
 
 const UserTable = ({ isLoading, users }) => (
    <Table 
@@ -14,10 +14,11 @@ const UserTable = ({ isLoading, users }) => (
    />
 );
 
-UserTable.propTypes = {
-   isLoading: bool,
-   columns: columns_type,
-   users: user_list_type
-}
+UserTable.propTypes = UserTablePropTypes;
 
-export default UserTable;
+const mapStateToProps = ({ users: { list }, general: { isLoading } }) => ({ 
+   users: list, 
+   isLoading 
+});
+
+export default connect(mapStateToProps)(UserTable);
