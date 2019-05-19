@@ -9,7 +9,7 @@ import { isEmail } from 'validator';
 import { signInOtherInfo } from 'assets/constants/data/signInOtherInfo'
 import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
 import { postRequest } from '../../assets/services/request.service';
-import { SignInContainerPropTypes } from '../../assets/prop-types/SignInContainet.prop-types';
+import { SignInContainerPropTypes } from '../../assets/prop-types/SignInContainer.prop-types';
 
 const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign In'; 

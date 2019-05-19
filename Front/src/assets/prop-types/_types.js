@@ -11,7 +11,7 @@ export const user = shape({
   token: string
 });
 
-export const singInData = shape({
+export const signInData = shape({
   email: string.isRequired,
   password: string.isRequired
 });
@@ -25,7 +25,7 @@ export const signUpData = shape({
   age: string.isRequired
 });
 
-export const userList = arrayOf(user);
+export const users = arrayOf(user);
 
 export const column = shape({
   title: string,

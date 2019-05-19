@@ -1,7 +1,7 @@
 import { FormContainersPropTypes } from './FormContainers.prop-types';
-import { singUpData } from './_types';
+import { signUpData } from './_types';
 
 export const SignUpContainerPropTypes = FormContainersPropTypes;
 
-SignUpContainerPropTypes['data'] = singUpData;
-SignUpContainerPropTypes['errors'] = singUpData;
+SignUpContainerPropTypes['data'] = signUpData;
+SignUpContainerPropTypes['errors'] = signUpData;

@@ -8,7 +8,7 @@ import { setIsLoading } from '../../store/actions';
 import { isEmail } from 'validator'; 
 import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
 import { signUpOtherInfo } from '../../assets/constants/data/signUpOtherInfo';
-import { SignUpContainerPropTypes } from '../../assets/prop-types/SignUpContainet.prop-types';
+import { SignUpContainerPropTypes } from '../../assets/prop-types/SignUpContainer.prop-types';
 
 const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign Up';

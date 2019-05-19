@@ -1,6 +1,6 @@
 import React from 'react';
 import Error from './Error';
-import Link from '../_reusable/CustomLink';
+import Link from '../_reusable/Link';
 
 const NotFound = () => {
    document.title = '404 | Not found';

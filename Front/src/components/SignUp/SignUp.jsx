@@ -3,7 +3,7 @@ import Field from '../_reusable/Field';
 import Link from '../_reusable/Link';
 import Form from '../_reusable/Form';
 import withSpin from '../withSpin';
-import { FormsPropTypes } from '../../assets/prop-types/Form.prop-types';
+import { FormsPropTypes } from '../../assets/prop-types/Forms.prop-types';
 
 const SignUp = ({ fields, onSubmit }) => (
    <Form 
