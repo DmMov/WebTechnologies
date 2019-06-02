@@ -9,6 +9,8 @@ import { isEmail } from 'validator';
 import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
 import { signUpOtherInfo } from '../../assets/constants/data/signUpOtherInfo';
 import { SignUpContainerPropTypes } from '../../assets/prop-types/SignUpContainer.prop-types';
+import { Post } from '../../assets/services/request.service';
+import { api } from '../../assets/constants/api';
 
 const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign Up';
@@ -52,7 +54,7 @@ const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, valid
       const isValid = validateResults.find(value => value == false) != false && true;
       if (isValid) {
          setIsLoading(true);
-         postRequest('auth/registration', data, onSuccess, onError, null);
+         Post(api + 'auth/registration', data, onSuccess, onError, null);
          setIsLoading(false);
       }
    };

@@ -8,8 +8,9 @@ import { setIsLoading } from '../../store/actions';
 import UnconfirmedEmailMessage from '../Message/UnconfirmedEmailMessage';
 import withHeader from '../withHeader';
 import { disabledDate } from '../../assets/constants/functions/disabledDate';
-import { putRequest } from '../../assets/services/request.service';
+import { Put } from '../../assets/services/request.service';
 import { PickStudyDateContainerPropTypes } from '../../assets/prop-types/PickStudyDateContainer.prop-types';
+import { api } from '../../assets/constants/api';
 
 const PickStudyDateContainer = ({ user, changeStudyDate, setIsLoading }) => {
    const [date, setDate] = useState('');
@@ -26,7 +27,7 @@ const PickStudyDateContainer = ({ user, changeStudyDate, setIsLoading }) => {
    }
    const onConfirmDate = () => {
       setIsLoading(true);
-      putRequest(`user/set-study-data/${localUser.id}/${date}`, {}, onSuccess, onError, localUser.token);
+      Put(`${api}user/set-study-data/${localUser.id}/${date}`, {}, onSuccess, onError, localUser.token);
    }
    const onDateChange = (date, dateStr) => setDate(dateStr);
 

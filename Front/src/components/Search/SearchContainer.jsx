@@ -4,8 +4,10 @@ import { setUsers, setSearch } from '../../store/users/actions';
 import { connect } from 'react-redux';
 import { get } from 'js-cookie';
 import { setIsLoading } from '../../store/actions';
-import { getRequest } from '../../assets/services/request.service';
+import { Get } from '../../assets/services/request.service';
 import { SearchContainerPropTypes } from '../../assets/prop-types/SearchContainer.prop-types';
+import { api } from '../../assets/constants/api';
+
 
 const SearchContainer = ({searchStr, sortBy, setSearch, setUsers, setIsLoading }) => {
    const onSuccess = data => {
@@ -20,7 +22,7 @@ const SearchContainer = ({searchStr, sortBy, setSearch, setUsers, setIsLoading }
       if (!!searchStr) {
          setIsLoading(true);
          const token = get('token');
-         getRequest(`admin/search/${searchStr}/${sortBy ? sortBy : 'empty'}`, onSuccess, onError, token)
+         Get(`${api}admin/search/${searchStr}/${sortBy ? sortBy : 'empty'}`, onSuccess, onError, token)
       }
    }
    

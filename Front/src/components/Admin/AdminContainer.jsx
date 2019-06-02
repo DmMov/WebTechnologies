@@ -5,8 +5,9 @@ import { setUsers } from '../../store/users/actions';
 import { setIsLoading } from '../../store/actions';
 import Cookies from 'js-cookie';
 import withHeader from '../withHeader';
-import { getRequest } from '../../assets/services/request.service';
+import { Get } from '../../assets/services/request.service';
 import { AdminContainerPropTypes } from '../../assets/prop-types/AdminContainer.prop-types';
+import { api } from '../../assets/constants/api';
 
 const AdminContainer = ({ setUsers, setIsLoading }) => {
    const onSuccess = (data) => {
@@ -19,7 +20,7 @@ const AdminContainer = ({ setUsers, setIsLoading }) => {
    useEffect(() => {
       setIsLoading(true);
       const token = Cookies.getJSON('token');
-      getRequest('admin', onSuccess, onError, !!token ? token : null);
+      Get(api + 'admin', onSuccess, onError, !!token ? token : null);
    }, []);
    
    return <Admin />

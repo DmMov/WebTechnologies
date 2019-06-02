@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import { setUsers, setSort } from '../../store/users/actions';
 import { setIsLoading } from '../../store/actions';
 import { get } from 'js-cookie';
-import { getRequest } from '../../assets/services/request.service';
+import { Get } from '../../assets/services/request.service';
 import { SortContainerPropTypes } from '../../assets/prop-types/SortContainer.prop-types';
+import { api } from '../../assets/constants/api';
 
 const SortContainer = ({ searchStr, setSort, setUsers, setIsLoading }) => {
    const onSuccess = data => {
@@ -19,7 +20,7 @@ const SortContainer = ({ searchStr, setSort, setUsers, setIsLoading }) => {
    const onChange = value => {
       setIsLoading(true);
       const token = get('token');
-      getRequest(`admin/sort/${value}/${searchStr ? searchStr : 'empty'}`, onSuccess, onError, token);
+      Get(`${api}admin/sort/${value}/${searchStr ? searchStr : 'empty'}`, onSuccess, onError, token);
    }
 
    return <Sort onChange={onChange} />

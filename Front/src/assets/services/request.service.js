@@ -1,5 +1,4 @@
-import { get, post, put } from 'axios'
-import { api } from '../constants/api';
+import { get, post, put, delete as del } from 'axios'
 
 const getHeaders = (token) => (
   !!token ? { 
@@ -9,23 +8,30 @@ const getHeaders = (token) => (
   } : null
 );
 
-export const getRequest = (url, onSuccess, onError, token) => {
+export const Get = (url, success, error, token) => {
   const headers = getHeaders(token);
-  get(api + url, !!headers && headers)
-    .then(({ data }) => onSuccess(data))
-    .catch(error => !!error.response && onError(error.response))
+  get(url, !!headers && headers)
+    .then(({ data }) => success(data))
+    .catch(({ response }) => error(response))
 }
 
-export const postRequest = (url, data, onSuccess, onError, token) => {
+export const Post = (url, data, success, error, token) => {
   const headers = getHeaders(token);
-  post(api + url, data, !!headers && headers)
-    .then(({ data }) => onSuccess(data))
-    .catch(error => !!error.response && onError(error.response));
+  post(url, data, !!headers && headers)
+    .then(({ data }) => success(data))
+    .catch(({ response }) => error(response));
 }
 
-export const putRequest = (url, data, onSuccess, onError, token) => {
+export const Put = (url, data, success, error, token) => {
   const headers = getHeaders(token);
-  put(api + url, data, !!headers && headers)
-    .then(({ data }) => onSuccess(data))
-    .catch(error => !!error.response && onError(error.response));
+  put(url, data, !!headers && headers)
+    .then(({ data }) => success(data))
+    .catch(({ response }) => !!response && error(response));
+}
+
+export const Delete = (url, success, error, token) => {
+  const headers = getHeaders(token);
+  del(url, !!headers && headers)
+    .then(({ data }) => success(data))
+    .catch(({ response }) => error(response));
 }

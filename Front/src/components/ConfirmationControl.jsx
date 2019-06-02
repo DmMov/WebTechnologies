@@ -3,8 +3,9 @@ import SuccessfulConfirmMessage from './Message/SuccessfulConfirmMessage';
 import Cookies from 'js-cookie';
 import { Icon } from 'antd';
 import { withRouter, Redirect } from 'react-router-dom';
-import { putRequest } from '../assets/services/request.service';
+import { Put } from '../assets/services/request.service';
 import { ConfirmationControlPropTypes } from '../assets/prop-types/ConfirmationControl.prop-types';
+import { api } from '../assets/constants/api';
 
 const ConfirmationControl = ({ match }) => {
    const [status, setStatus] = useState('');
@@ -12,7 +13,7 @@ const ConfirmationControl = ({ match }) => {
    const { userId, confCode } = match.params;
 
    useEffect(() => {
-      putRequest(`user/confirm-email/${userId}/${confCode}`, data => setStatus('success'), error => setStatus('error') )
+      Put(`${api}user/confirm-email/${userId}/${confCode}`, data => setStatus('success'), error => setStatus('error') )
    }, []);
 
    switch (status) {

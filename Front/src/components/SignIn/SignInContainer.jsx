@@ -8,8 +8,9 @@ import SignIn from './SignIn';
 import { isEmail } from 'validator';
 import { signInOtherInfo } from 'assets/constants/data/signInOtherInfo'
 import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
-import { postRequest } from '../../assets/services/request.service';
+import { Post } from '../../assets/services/request.service';
 import { SignInContainerPropTypes } from '../../assets/prop-types/SignInContainer.prop-types';
+import { api } from '../../assets/constants/api';
 
 const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
    document.title = 'Education | Sign In'; 
@@ -47,7 +48,7 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
 
       if (isValid) {
          setIsLoading(true);
-         postRequest('auth/login', data, onSuccess, onError, null);
+         Post(api + 'auth/login', data, onSuccess, onError, null);
          setIsLoading(false);
       }
    };
