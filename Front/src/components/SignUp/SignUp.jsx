@@ -12,21 +12,8 @@ const SignUp = ({ fields, onSubmit }) => (
       buttonText="sign up" 
       onSubmit={onSubmit}
    >
-      <Link 
-         to="/sign-in" 
-         label="go back to login" 
-      />  
-      {fields.map(({ name, value, error, placeholder, setValue, type}, i) => (
-         <Field 
-            key={i}
-            name={name} 
-            value={value} 
-            error={error} 
-            type={type} 
-            setValue={setValue}
-            placeholder={placeholder}
-         />
-      ))}
+      <Link to="/sign-in" label="go back to login" />  
+      { fields.map(field => <Field key={field.name} {...field} />) }
    </Form>
 );
 

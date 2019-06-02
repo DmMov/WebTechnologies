@@ -13,17 +13,7 @@ const SignIn = ({ fields, onSubmit }) => (
       onSubmit={onSubmit}
    >
       <Link to="/sign-up" label="create new account" />
-      {fields.map(({ name, value, error, placeholder, setValue, type}, i) => (
-         <Field 
-            key={i}
-            name={name} 
-            value={value} 
-            error={error} 
-            type={type} 
-            setValue={setValue}
-            placeholder={placeholder}
-         />
-      ))}
+      { fields.map(field => <Field key={field.name} {...field} />) }
    </Form>
 );
 

@@ -13,11 +13,7 @@ const Sort = ({ onChange }) => (
       placeholder="Select sort type"
       onChange={onChange}
    >
-      {
-         sortOptions.map(({ value, text }, i) => (
-            <Option key={i} value={value} >{text}</Option>
-         ))
-      }
+      { sortOptions.map(({ value, text }, i) => <Option key={i} value={value}>{text}</Option>) }
    </Select>
 );
 
