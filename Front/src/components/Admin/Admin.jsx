@@ -3,12 +3,11 @@ import SortContainer from '../Sort/SortContainer';
 import SearchContainer from '../Search/SearchContainer';
 import UserTable from './UserTable';
 
-const Admin = () => (
+const Admin = () =>
    <div className="admin-layout-wrap grid">
       <SearchContainer />
       <SortContainer />
       <UserTable />
-   </div>  
-);
+   </div>
 
 export default Admin;

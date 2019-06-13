@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 const getDefaultValues = (initialState, requiredFields) => Component => props => {
    const [data, setData] = useState(initialState);
    const [errors, setErrors] = useState(requiredFields);

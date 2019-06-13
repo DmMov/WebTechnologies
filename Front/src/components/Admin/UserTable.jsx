@@ -4,7 +4,7 @@ import { columns } from 'assets/constants/data/columns';
 import { UserTablePropTypes } from '../../assets/prop-types/UserTable.prop-types';
 import { connect } from 'react-redux'
 
-const UserTable = ({ isLoading, users }) => (
+const UserTable = ({ isLoading, users }) =>
    <Table 
       loading={isLoading}
       pagination={{ pageSize: 15 }} 
@@ -12,7 +12,6 @@ const UserTable = ({ isLoading, users }) => (
       dataSource={users} 
       rowKey={({ index }) => index} 
    />
-);
 
 UserTable.propTypes = UserTablePropTypes;
 

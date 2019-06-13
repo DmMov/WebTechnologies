@@ -1,22 +1,18 @@
 import React from 'react';
-import { Link as RouterLink, Route } from 'react-router-dom';
+import { Link as RL, Route } from 'react-router-dom';
 import cx from 'classnames';
 import { LinkPropTypes } from '../../assets/prop-types/Link.prop-types';
 
-const Link = ({ label, to, active }) => (
+const Link = ({ label, to, active }) =>
    <Route 
       path={to}
       exact={active}
       children={({ match }) => (
-         <RouterLink 
-            className={cx('link', !!match && 'active')} 
-            to={to}
-         >
+         <RL className={cx('link', !!match && 'active')} to={to}>
             {label}
-         </RouterLink>
+         </RL>
       )}
    />
-);
 
 Link.propTypes = LinkPropTypes;
 

@@ -8,7 +8,7 @@ import { redirectCheck } from '../assets/constants/functions/redirectCheck';
 import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/constants/data/routesParams';
 import { AppPropTypes } from '../assets/prop-types/App.prop-types';
 
-const App = ({ user }) => (
+const App = ({ user }) =>
    <Router>
       <>
          <Switch>
@@ -54,8 +54,7 @@ const App = ({ user }) => (
          </Switch>
       </>
    </Router>
-);
-
+   
 App.propTypes = AppPropTypes;
 
 const mapStateToProps = ({ user }) => ({ user });
