@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select } from 'antd';
-import { sortOptions } from '../../assets/constants/data/sortOptions';
+import { sortOptions } from '../../assets/data/sortOptions';
 import { SortPropTypes } from '../../assets/prop-types/Sort.prop-types';
 
 const { Option } = Select;

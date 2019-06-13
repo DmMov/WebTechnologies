@@ -29,7 +29,7 @@ const SearchContainer = ({searchStr, sortBy, setSearch, setUsers, setIsLoading }
    return (
       <SearchUsers 
          value={searchStr}
-         setValue={({ target }) => setSearch(target.value)}
+         change={({ target }) => setSearch(target.value)}
          onSubmit={onSearch}
       />
    );

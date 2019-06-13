@@ -1,9 +1,8 @@
 import { func, bool } from "prop-types";
 import { users } from './_types';
 
-export const AdminContainerPropTypes = {
+export const AdministratorContainerPropTypes = {
   users,
   setUsers: func.isRequired,
-  isLoading: bool.isRequired,
   setIsLoading: func.isRequired 
 }

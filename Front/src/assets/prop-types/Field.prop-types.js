@@ -5,5 +5,5 @@ export const FieldPropTypes = {
   placeholder: string.isRequired,
   value: string.isRequired,
   type: string.isRequired,
-  setValue: func.isRequired
+  change: func.isRequired
 }

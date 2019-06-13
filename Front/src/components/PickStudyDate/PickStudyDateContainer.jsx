@@ -7,7 +7,7 @@ import { changeStudyDate } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
 import UnconfirmedEmailMessage from '../Message/UnconfirmedEmailMessage';
 import withHeader from '../withHeader';
-import { disabledDate } from '../../assets/constants/functions/disabledDate';
+import { disabledDate } from '../../assets/functions/disabledDate';
 import { Put } from '../../assets/services/request.service';
 import { PickStudyDateContainerPropTypes } from '../../assets/prop-types/PickStudyDateContainer.prop-types';
 import { api } from '../../assets/constants/api';

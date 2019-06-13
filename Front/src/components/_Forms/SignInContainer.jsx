@@ -1,19 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { set } from 'js-cookie';
-import withForm from '../withForm';
 import { setUserData } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
 import SignIn from './SignIn';
 import { isEmail } from 'validator';
-import { signInOtherInfo } from 'assets/constants/data/signInOtherInfo'
-import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
+import { signInOtherInfo } from 'assets/data/signInOtherInfo'
+import { generateFormFields } from '../../assets/functions/generateFormFields';
 import { Post } from '../../assets/services/request.service';
 import { SignInContainerPropTypes } from '../../assets/prop-types/SignInContainer.prop-types';
 import { api } from '../../assets/constants/api';
+import { useFormValidation } from '../../assets/hooks/useFormValidation';
 
-const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
+const INITIAL_STATE = {
+   email: '',
+   password: '',
+};
+
+const SignInContainer = ({ setUserData, setIsLoading }) => {
    document.title = 'Education | Sign In'; 
+
+   const { data, errors, change, setErrors, validate } = useFormValidation(INITIAL_STATE, INITIAL_STATE);
    
    const { email, password } = data;
 
@@ -27,7 +34,7 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
          errorText: 'password has to be at least 5 characters'
       }
    }
-   const fields = generateFormFields(data, errors, setValue, signInOtherInfo);
+   const fields = generateFormFields(data, errors, change, signInOtherInfo);
 
    const onSuccess = (data) => {
       set('user', data, { expires: 7 });
@@ -52,25 +59,9 @@ const SignInContainer = ({ data, errors, setValue, setErrors, setUserData, valid
          setIsLoading(false);
       }
    };
-   return (
-      <SignIn 
-         fields={fields}
-         onSubmit={onSubmit}
-      />
-   );
+   return <SignIn fields={fields} onSubmit={onSubmit} />;
 }
 
 SignInContainer.propTypes = SignInContainerPropTypes;
 
-const initialState = {
-   email: '',
-   password: '',
-};
-
-const WrappedSignInContainer = withForm(initialState, initialState)(SignInContainer)
-
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = { setUserData, setIsLoading };
-
-export default connect(mapStateToProps, mapDispatchToProps)(WrappedSignInContainer);
+export default connect(null, { setUserData, setIsLoading })(SignInContainer);

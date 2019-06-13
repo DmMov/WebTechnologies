@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from '../../../components/_reusable/Page';
+import Page from '../../components/_General/Page';
 import { Redirect } from 'react-router-dom';
 
 export const redirectCheck = (condition, { Component, pageClass, from, to }) => {

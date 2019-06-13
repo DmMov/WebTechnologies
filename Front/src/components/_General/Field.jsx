@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { FieldPropTypes } from '../../assets/prop-types/Field.prop-types';
 
-const Field = ({ name, placeholder, value, error, type, setValue }) =>
+const Field = ({ name, placeholder, value, error, type, change }) =>
    <label htmlFor={'id-' + name} className={cx('field', !!name && name + '-field', !!error && 'error', !!value && 'filled')}>
       <input 
          className="input"
@@ -10,7 +10,7 @@ const Field = ({ name, placeholder, value, error, type, setValue }) =>
          type={type} 
          name={name}
          value={value} 
-         onChange={setValue} 
+         onChange={change} 
          autoComplete="off"
       />
       <span className="placeholder">{placeholder}</span>

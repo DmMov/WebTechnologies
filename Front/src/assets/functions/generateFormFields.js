@@ -7,14 +7,14 @@ const addToFields = (fields, obj, name) => {
   return fields;
 }
 
-export const generateFormFields = (data, errors, setValue, other) => {
+export const generateFormFields = (data, errors, change, other) => {
   let fields = [];
   fields = addToFields(fields, data, 'value');
   fields = addToFields(fields, errors, 'error');
   const dataKeys = Object.keys(data);
   fields = fields.map((item, i) => {
     const { type, placeholder } = other[i];
-    item = { ...item, name: dataKeys[i], setValue, type, placeholder };
+    item = { ...item, name: dataKeys[i], change, type, placeholder };
     return item;
   });
   return fields;

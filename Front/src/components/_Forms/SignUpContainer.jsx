@@ -2,19 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 import SignUp from './SignUp';
-import withForm from '../withForm';
 import { setUserData } from '../../store/user/actions';
 import { setIsLoading } from '../../store/actions';
 import { isEmail } from 'validator'; 
-import { generateFormFields } from '../../assets/constants/functions/generateFormFields';
-import { signUpOtherInfo } from '../../assets/constants/data/signUpOtherInfo';
+import { generateFormFields } from '../../assets/functions/generateFormFields';
+import { signUpOtherInfo } from '../../assets/data/signUpOtherInfo';
 import { SignUpContainerPropTypes } from '../../assets/prop-types/SignUpContainer.prop-types';
 import { Post } from '../../assets/services/request.service';
 import { api } from '../../assets/constants/api';
-
-const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, validate, setIsLoading }) => {
+import { useFormValidation } from '../../assets/hooks/useFormValidation';
+const INITIAL_STATE = {
+   email: '',
+   name: '',
+   lastName: '',
+   password: '',
+   repeat: '',
+   age: ''
+};
+const SignUpContainer = ({ setUserData, setIsLoading }) => {
    document.title = 'Education | Sign Up';
+   const { data, errors, change, setErrors, validate } = useFormValidation(INITIAL_STATE, INITIAL_STATE);
+
    const { email, password, repeat, age } = data;
+
    const validateParams = {
       email: {
          condition: !isEmail(email),
@@ -33,7 +43,7 @@ const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, valid
          errorText: 'age cannot be zero or less'
       }
    };
-   const fields = generateFormFields(data, errors, setValue, signUpOtherInfo);
+   const fields = generateFormFields(data, errors, change, signUpOtherInfo);
    const onSuccess = (data) => {
       Cookies.set('user', data, { expires: 7 });
       Cookies.set('token', data.token, { expires: 7 });
@@ -63,18 +73,4 @@ const SignUpContainer = ({ data, errors, setValue, setErrors, setUserData, valid
 
 SignUpContainer.propTypes = SignUpContainerPropTypes;
 
-const initialState = {
-   email: '',
-   name: '',
-   lastName: '',
-   password: '',
-   repeat: '',
-   age: ''
-};
-
-const WrappedSignUpContainer = withForm(initialState, initialState)(SignUpContainer);
-
-const mapStateToProps = ({ general: { isLoading } }) => ({ isLoading });
-const mapDispatchToProps = { setUserData, setIsLoading };
-
-export default connect(mapStateToProps, mapDispatchToProps)(WrappedSignUpContainer);
+export default connect(null, { setUserData, setIsLoading })(SignUpContainer);

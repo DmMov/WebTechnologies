@@ -1,7 +1,7 @@
 import React from 'react';
-import Field from '../_reusable/Field';
-import Link from '../_reusable/Link';
-import Form from '../_reusable/Form';
+import Field from '../_General/Field';
+import Link from '../_General/Link';
+import Form from '../_General/Form';
 import withSpin from '../withSpin';
 import { FormsPropTypes } from '../../assets/prop-types/Forms.prop-types';
 

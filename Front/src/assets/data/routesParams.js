@@ -1,7 +1,7 @@
-import PickStudyDateContainer from "../../../components/PickStudyDate/PickStudyDateContainer";
-import AdminContainer from "../../../components/Admin/AdminContainer";
-import SignUpContainer from "../../../components/_Forms/SignUpContainer";
-import SignInContainer from "../../../components/_Forms/SignInContainer";
+import PickStudyDateContainer from "../../components/PickStudyDate/PickStudyDateContainer";
+import AdministratorContainer from "../../components/Administrator/AdministratorContainer";
+import SignUpContainer from "../../components/_Forms/SignUpContainer";
+import SignInContainer from "../../components/_Forms/SignInContainer";
 
 export const rootRoute = {
   Component: SignInContainer,
@@ -18,7 +18,7 @@ export const signUpRoute = {
 }
 
 export const adminRoute = {
-  Component: AdminContainer,
+  Component: AdministratorContainer,
   pageClass: 'admin-page', 
   from : '/admin', 
   to:'/user'

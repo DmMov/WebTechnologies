@@ -1,13 +1,13 @@
 import React from 'react';
 import SortContainer from '../Sort/SortContainer';
 import SearchContainer from '../_Forms/SearchContainer';
-import UserTable from './UserTable';
+import TableContainer from './TableContainer';
 
-const Admin = () =>
+const Administrator = () =>
    <div className="admin-layout-wrap grid">
       <SearchContainer />
       <SortContainer />
-      <UserTable />
+      <TableContainer />
    </div>
 
-export default Admin;
+export default Administrator;

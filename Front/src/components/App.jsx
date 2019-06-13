@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Page from './_reusable/Page';
+import Page from './_General/Page';
 import ConfirmationControl from './ConfirmationControl';
 import NotFound from './Error/NotFound';
-import { redirectCheck } from '../assets/constants/functions/redirectCheck';
-import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/constants/data/routesParams';
+import { redirectCheck } from '../assets/functions/redirectCheck';
+import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/data/routesParams';
 import { AppPropTypes } from '../assets/prop-types/App.prop-types';
 
 const App = ({ user }) =>

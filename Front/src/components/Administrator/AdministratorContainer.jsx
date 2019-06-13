@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import Admin from './Admin';
+import Administrator from './Administrator';
 import { connect } from 'react-redux'
 import { setUsers } from '../../store/users/actions';
 import { setIsLoading } from '../../store/actions';
 import Cookies from 'js-cookie';
 import withHeader from '../withHeader';
 import { Get } from '../../assets/services/request.service';
-import { AdminContainerPropTypes } from '../../assets/prop-types/AdminContainer.prop-types';
+import { AdministratorContainerPropTypes } from '../../assets/prop-types/AdministratorContainer.prop-types';
 import { api } from '../../assets/constants/api';
 
-const AdminContainer = ({ setUsers, setIsLoading }) => {
+const AdministratorContainer = ({ setUsers, setIsLoading }) => {
    const onSuccess = (data) => {
       setUsers(data);
       setIsLoading(false);
@@ -23,18 +23,11 @@ const AdminContainer = ({ setUsers, setIsLoading }) => {
       Get(api + 'admin', onSuccess, onError, !!token ? token : null);
    }, []);
    
-   return <Admin />
+   return <Administrator />
 };
 
-AdminContainer.propTypes = AdminContainerPropTypes;
+AdministratorContainer.propTypes = AdministratorContainerPropTypes;
 
-const mapStateToProps = () => ({});
-
-const mapDispatchToProps = { 
-   setUsers, 
-   setIsLoading 
-};
-
-const ConnectedAdminContainer = connect(mapStateToProps, mapDispatchToProps)(AdminContainer)
+const ConnectedAdminContainer = connect(null, { setUsers, setIsLoading })(AdministratorContainer)
 
 export default withHeader(ConnectedAdminContainer);

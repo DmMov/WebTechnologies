@@ -39,7 +39,7 @@ export const field = shape({
   value: string,
   placeholder: string,
   type: string,
-  setValue: func,
+  change: func,
   error: string
 });
 export const fields = arrayOf(field);
