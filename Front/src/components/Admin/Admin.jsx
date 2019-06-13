@@ -1,6 +1,6 @@
 import React from 'react';
 import SortContainer from '../Sort/SortContainer';
-import SearchContainer from '../Search/SearchContainer';
+import SearchContainer from '../_Forms/SearchContainer';
 import UserTable from './UserTable';
 
 const Admin = () =>
