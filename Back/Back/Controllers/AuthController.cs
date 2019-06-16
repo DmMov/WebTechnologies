@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Back.Models;
 using Back.Models.UIModels;
 using Back.Services;
 using Hangfire;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,17 +20,33 @@ namespace Back.Controllers
     {
         public AuthService authService;
         public EmailService emailService;
-        public UserDataService userDataService;
+        public UserService userService;
 
-        public AuthController(AuthService authService, EmailService emailService, UserDataService userDataService)
+        public AuthController(AuthService authService, EmailService emailService, UserService userService)
         {
             this.authService = authService;
             this.emailService = emailService;
-            this.userDataService = userDataService;
+            this.userService = userService;
         }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] SignInUI signIn)
+        [Authorize]
+        [HttpGet]
+        public IActionResult CheckAuth()
+        {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            User user = userService.GetUser(id);
+
+
+            if (user != null)
+            {
+                UserUI userUI = userService.UserToUserUI(user);
+                return Ok(new { user = userUI });
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("sign-in")]
+        public IActionResult SignIn(SignInUI signIn)
         {
             IActionResult response = BadRequest("Incorrect username or password");
 
@@ -37,16 +55,15 @@ namespace Back.Controllers
             if (user != null)
             {
                 string token = authService.BuildToken(user);
-                UserUI userUI = userDataService.UserToUserUI(user);
-                userUI.Token = token;
-                response = Ok(userUI);
+                UserUI userUI = userService.UserToUserUI(user);
+                response = Ok(new { user = userUI, token });
             }
 
             return response;
         }
 
-        [HttpPost("registration")]
-        public IActionResult Registration([FromBody] SignUpUI signUpUI)
+        [HttpPost("sign-up")]
+        public IActionResult SignUp(SignUpUI signUpUI)
         {
             IActionResult response = BadRequest();
 
@@ -58,32 +75,18 @@ namespace Back.Controllers
                 {
                     response = UnprocessableEntity("email is already taken");
                 }
-
                 else
                 {
-                        User user = userDataService.InitializeUser(signUpUI);
-                        BackgroundJob.Enqueue(() => emailService.SendEmailAsync(user.Email, "Confirm Email", $"http://192.168.0.149:8080/confirm-email/{user.Id}/{user.Code}"));
-                        string token = authService.BuildToken(user);
-                        UserUI userUI = userDataService.UserToUserUI(user);
-                        userUI.Token = token;
-                        userDataService.SaveUser(user);
-                        response = Ok(userUI);
+                    User user = userService.InitializeUser(signUpUI);
+                    BackgroundJob.Enqueue(() => emailService.SendEmailAsync(user.Email, "Confirm Email", $"http://192.168.0.149:8080/confirm-email/{user.Id}/{user.Code}"));
+                    string token = authService.BuildToken(user);
+                    UserUI userUI = userService.UserToUserUI(user);
+                    userService.SaveUser(user);
+                    response = Ok(userUI);
                 }
-
             }
-
             return response;
         }
 
-        [HttpPost("check-email")]
-        public IActionResult CheckEmail(SignInUI signInUI)
-        {
-            bool emailIsTaken = authService.EmailIsTaken(signInUI.Email);
-            if (emailIsTaken)
-            {
-                return BadRequest("email is already taken");
-            }
-            return Ok();
-        }
     }
 }

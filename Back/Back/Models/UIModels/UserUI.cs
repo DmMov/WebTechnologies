@@ -16,6 +16,5 @@ namespace Back.Models.UIModels
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public string RegisteredDate { get; set; }
-        public string Token { get; set; }
     }
 }

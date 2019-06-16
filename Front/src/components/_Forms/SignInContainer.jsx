@@ -41,7 +41,7 @@ const SignInContainer = () => {
     if (isValid(data, validate, validateParams)) {
       dispatch(setLoading(true));
       Post(
-        'auth/login', 
+        'auth/sign-in', 
         data, 
         data => {
           set('user', data);

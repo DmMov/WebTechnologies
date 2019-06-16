@@ -1,14 +1,22 @@
 import { createStore } from 'redux';
-import rootReducer from './reducers';
+import { get } from 'js-cookie';
 
+import rootReducer from './reducers';
 import { setUser } from './user/actions';
-import { getJSON } from 'js-cookie';
+import { Get} from '../assets/services/request.service';
 
 export const store =  createStore(rootReducer);
 
 const getUser = () => {
-   const user = getJSON('user');
-   typeof(user) !== 'undefined' && store.dispatch(setUser(user));
+   const token = get('token');
+   if (typeof(token) !== 'undefined') {
+      Get(
+         'auth', 
+         data => store.dispatch(setUser(data.user)),
+         error => console.log(error),
+         token
+      )
+   }
 }
 
 getUser();

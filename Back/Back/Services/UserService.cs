@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 
 namespace Back.Services
 {
-    public class UserDataService
+    public class UserService
     {
         ApplicationContext context;
 
-        public UserDataService(ApplicationContext context)
+        public UserService(ApplicationContext context)
         {
             this.context = context;
         }
 
-        public UserUI UserToUserUI(User user)
-        {
-            return new UserUI
+        public UserUI UserToUserUI(User user) => new UserUI
             {
                 Id = user.Id,
                 Name = user.Name,
@@ -30,19 +28,10 @@ namespace Back.Services
                 RegisteredDate = user.RegisteredDate,
                 Age = user.Age
             };
-        }
 
-        public User GetUser(string userId)
-        {
+        public User GetUser(string userId) => context.Users.FirstOrDefault(x => x.Id == userId);
 
-            User user = context.Users.FirstOrDefault(x => x.Id == userId);
-
-            return user;
-        }
-
-        public User InitializeUser(SignUpUI signUpUI)
-        {
-            return new User
+        public User InitializeUser(SignUpUI signUpUI) => new User
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = signUpUI.Name,
@@ -55,7 +44,6 @@ namespace Back.Services
                 Role = "user",
                 Code = Guid.NewGuid().ToString()
             };
-        }
 
         public void SaveUser(User user)
         {

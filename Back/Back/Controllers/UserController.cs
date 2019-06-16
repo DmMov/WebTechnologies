@@ -16,10 +16,10 @@ namespace Back.Controllers
     [ApiController, Authorize(Roles = "user")]
     public class UserController : ControllerBase
     {
-        public UserDataService userDataService;
+        public UserService userDataService;
         public EmailService emailService;
 
-        public UserController(UserDataService userDataService, EmailService emailService)
+        public UserController(UserService userDataService, EmailService emailService)
         {
             this.userDataService = userDataService;
             this.emailService = emailService;

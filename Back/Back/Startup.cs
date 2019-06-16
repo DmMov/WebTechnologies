@@ -54,7 +54,7 @@ namespace Back
            
             services.AddTransient<AuthService>();
             services.AddTransient<EmailService>();
-            services.AddTransient<UserDataService>();
+            services.AddTransient<UserService>();
             services.AddTransient<UserListService>();
             services.AddTransient<SortUsersService>();
 
