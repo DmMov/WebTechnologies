@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
+import Cookies from 'js-cookie';
 import Administrator from './Administrator';
 import { connect } from 'react-redux'
 import { setUsers } from '../../store/users/actions';
 import { setLoading } from '../../store/actions';
-import Cookies from 'js-cookie';
 import withHeader from '../withHeader';
 import { Get } from '../../assets/services/request.service';
-import { AdministratorContainerPropTypes } from '../../assets/prop-types/AdministratorContainer.prop-types';
 import { api } from '../../assets/constants/api';
 
 const AdministratorContainer = ({ setUsers, setLoading }) => {
@@ -25,8 +24,6 @@ const AdministratorContainer = ({ setUsers, setLoading }) => {
    
    return <Administrator />
 };
-
-AdministratorContainer.propTypes = AdministratorContainerPropTypes;
 
 const ConnectedAdminContainer = connect(null, { setUsers, setLoading })(AdministratorContainer)
 

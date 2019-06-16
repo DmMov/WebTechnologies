@@ -5,7 +5,6 @@ import { setUsers, setSort } from '../../store/users/actions';
 import { setLoading } from '../../store/actions';
 import { get } from 'js-cookie';
 import { Get } from '../../assets/services/request.service';
-import { SortContainerPropTypes } from '../../assets/prop-types/SortContainer.prop-types';
 import { api } from '../../assets/constants/api';
 
 const SortContainer = ({ searchStr, setSort, setUsers, setLoading }) => {
@@ -25,8 +24,6 @@ const SortContainer = ({ searchStr, setSort, setUsers, setLoading }) => {
 
    return <Sort onChange={onChange} />
 };
-
-SortContainer.propTypes = SortContainerPropTypes;
 
 const mapStateToProps = ({ common: { search }}) => ({ search });
 
