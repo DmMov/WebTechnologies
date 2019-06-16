@@ -1,16 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Spin } from 'antd';
 
-const withSpin = Component => {
-   const Container = props =>
-      <Spin spinning={props.isLoading} >
-         <Component {...props} />
-      </Spin>
-
-   const mapStateToProps = ({ general: { isLoading } }) => ({ isLoading });
-
-   return connect(mapStateToProps)(Container);
-};
+const withSpin = Component => props => {
+  const loading = useSelector(({ common: { loading} }) => loading)
+  return (
+    <Spin spinning={loading} >
+      <Component {...props} />
+    </Spin>
+  );
+}
 
 export default withSpin;
