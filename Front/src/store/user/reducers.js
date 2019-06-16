@@ -1,10 +1,10 @@
-import { SET_USER_DATA, CHANGE_STUDY_DATE, REMOVE_USER_DATA, EMAIL_CONFIRM } from "./actions";
+import { SET_USER, CHANGE_STUDY_DATE, REMOVE_USER_DATA, EMAIL_CONFIRM } from "./actions";
 
 const defaultState = {};
 
 export const userReducer = (state = defaultState, { type, payload }) => {
    switch(type) {
-      case SET_USER_DATA:
+      case SET_USER:
          return {
             ...payload
          };

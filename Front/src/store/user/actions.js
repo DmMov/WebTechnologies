@@ -1,10 +1,10 @@
-export const SET_USER_DATA = 'SET_USER_DATA';
+export const SET_USER = 'SET_USER';
 export const CHANGE_STUDY_DATE = 'CHANGE_STUDY_DATE';
 export const EMAIL_CONFIRM = 'EMAIL_CONFIRM';
 export const REMOVE_USER_DATA = 'REMOVE_USER_DATA';
 
-export const setUserData = data => ({
-   type: SET_USER_DATA,
+export const setUser = data => ({
+   type: SET_USER,
    payload: data
 });
 

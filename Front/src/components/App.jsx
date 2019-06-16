@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Page from './_General/Page';
 import ConfirmationControl from './ConfirmationControl';
 import NotFound from './Error/NotFound';
-import { redirectCheck } from '../assets/functions/redirectCheck';
+import { redirectCheck } from '../assets/utils/redirectCheck';
 import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/data/routesParams';
 import { AppPropTypes } from '../assets/prop-types/App.prop-types';
 

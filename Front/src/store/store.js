@@ -1,14 +1,14 @@
 import { createStore } from 'redux';
 import rootReducer from './reducers';
 
-import { setUserData } from './user/actions';
-import Cookies from 'js-cookie';
+import { setUser } from './user/actions';
+import { getJSON } from 'js-cookie';
 
 export const store =  createStore(rootReducer);
 
 const getUser = () => {
-   const user = Cookies.getJSON('user');
-   typeof(user) !== 'undefined' && store.dispatch(setUserData(user));
+   const user = getJSON('user');
+   typeof(user) !== 'undefined' && store.dispatch(setUser(user));
 }
 
 getUser();
