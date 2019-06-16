@@ -1,4 +1,5 @@
 import { get, post, put, delete as del } from 'axios'
+import { api } from '../constants/api';
 
 const getHeaders = (token) => (
   !!token ? { 
@@ -10,28 +11,28 @@ const getHeaders = (token) => (
 
 export const Get = (url, success, error, token) => {
   const headers = getHeaders(token);
-  get(url, !!headers && headers)
+  get(api + url, !!headers && headers)
     .then(({ data }) => success(data))
     .catch(({ response }) => error(response))
 }
 
 export const Post = (url, data, success, error, token) => {
   const headers = getHeaders(token);
-  post(url, data, !!headers && headers)
+  post(api + url, data, !!headers && headers)
     .then(({ data }) => success(data))
     .catch(({ response }) => error(response));
 }
 
 export const Put = (url, data, success, error, token) => {
   const headers = getHeaders(token);
-  put(url, data, !!headers && headers)
+  put(api + url, data, !!headers && headers)
     .then(({ data }) => success(data))
     .catch(({ response }) => !!response && error(response));
 }
 
 export const Delete = (url, success, error, token) => {
   const headers = getHeaders(token);
-  del(url, !!headers && headers)
+  del(api + url, !!headers && headers)
     .then(({ data }) => success(data))
     .catch(({ response }) => error(response));
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 import SignUp from './SignUp';
 import { setUserData } from '../../store/user/actions';
-import { setIsLoading } from '../../store/actions';
+import { setLoading } from '../../store/actions';
 import { isEmail } from 'validator'; 
 import { generateFormFields } from '../../assets/functions/generateFormFields';
 import { signUpOtherInfo } from '../../assets/data/signUpOtherInfo';
@@ -19,7 +19,7 @@ const INITIAL_STATE = {
    repeat: '',
    age: ''
 };
-const SignUpContainer = ({ setUserData, setIsLoading }) => {
+const SignUpContainer = ({ setUserData, setLoading }) => {
    document.title = 'Education | Sign Up';
    const { data, errors, change, setErrors, validate } = useFormValidation(INITIAL_STATE, INITIAL_STATE);
 
@@ -63,9 +63,9 @@ const SignUpContainer = ({ setUserData, setIsLoading }) => {
       const validateResults = dataKeys.map(item => item && validate(item, data[item], !!validateParams[item] && validateParams[item]));
       const isValid = validateResults.find(value => value == false) != false && true;
       if (isValid) {
-         setIsLoading(true);
+         setLoading(true);
          Post(api + 'auth/registration', data, onSuccess, onError, null);
-         setIsLoading(false);
+         setLoading(false);
       }
    };
    return <SignUp fields={fields} onSubmit={onSubmit} />
@@ -73,4 +73,4 @@ const SignUpContainer = ({ setUserData, setIsLoading }) => {
 
 SignUpContainer.propTypes = SignUpContainerPropTypes;
 
-export default connect(null, { setUserData, setIsLoading })(SignUpContainer);
+export default connect(null, { setUserData, setLoading })(SignUpContainer);

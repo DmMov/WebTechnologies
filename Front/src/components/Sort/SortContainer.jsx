@@ -2,17 +2,17 @@ import React from 'react';
 import Sort from './Sort';
 import { connect } from 'react-redux'
 import { setUsers, setSort } from '../../store/users/actions';
-import { setIsLoading } from '../../store/actions';
+import { setLoading } from '../../store/actions';
 import { get } from 'js-cookie';
 import { Get } from '../../assets/services/request.service';
 import { SortContainerPropTypes } from '../../assets/prop-types/SortContainer.prop-types';
 import { api } from '../../assets/constants/api';
 
-const SortContainer = ({ searchStr, setSort, setUsers, setIsLoading }) => {
+const SortContainer = ({ searchStr, setSort, setUsers, setLoading }) => {
    const onSuccess = data => {
       setSort(value);
       setUsers(data);
-      setIsLoading(false);
+      setLoading(false);
    }
    const onError = error => {
       console.log(error);
@@ -28,8 +28,8 @@ const SortContainer = ({ searchStr, setSort, setUsers, setIsLoading }) => {
 
 SortContainer.propTypes = SortContainerPropTypes;
 
-const mapStateToProps = ({ users: { searchStr }}) => ({ searchStr });
+const mapStateToProps = ({ common: { search }}) => ({ search });
 
-const mapDispatchToProps = { setUsers, setSort, setIsLoading };
+const mapDispatchToProps = { setUsers, setSort, setLoading };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SortContainer);

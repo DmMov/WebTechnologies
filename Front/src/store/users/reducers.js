@@ -1,12 +1,12 @@
 import { SET_USERS, SET_SEARCH, SET_SORT } from "./actions";
 
-const defaultState = {
+const INITIAL_STATE = {
    list: [],
    searchStr: '',
    sortBy: ''
 };
 
-export const usersReducer = (state = defaultState, { type, payload}) => {
+export const usersReducer = (state = INITIAL_STATE, { type, payload}) => {
    switch (type) {
       case SET_USERS: 
          const mappedPayload = payload.map((item, index) => {

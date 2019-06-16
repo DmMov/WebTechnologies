@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { set } from 'js-cookie';
 import { setUserData } from '../../store/user/actions';
-import { setIsLoading } from '../../store/actions';
+import { setLoading } from '../../store/actions';
 import SignIn from './SignIn';
 import { isEmail } from 'validator';
 import { signInOtherInfo } from 'assets/data/signInOtherInfo'
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
    password: '',
 };
 
-const SignInContainer = ({ setUserData, setIsLoading }) => {
+const SignInContainer = ({ setUserData, setLoading }) => {
    document.title = 'Education | Sign In'; 
 
    const { data, errors, change, setErrors, validate } = useFormValidation(INITIAL_STATE, INITIAL_STATE);
@@ -54,9 +54,9 @@ const SignInContainer = ({ setUserData, setIsLoading }) => {
       const isValid = validateResults.find(value => value == false) != false && true; 
 
       if (isValid) {
-         setIsLoading(true);
+         setLoading(true);
          Post(api + 'auth/login', data, onSuccess, onError, null);
-         setIsLoading(false);
+         setLoading(false);
       }
    };
    return <SignIn fields={fields} onSubmit={onSubmit} />;
@@ -64,4 +64,4 @@ const SignInContainer = ({ setUserData, setIsLoading }) => {
 
 SignInContainer.propTypes = SignInContainerPropTypes;
 
-export default connect(null, { setUserData, setIsLoading })(SignInContainer);
+export default connect(null, { setUserData, setLoading })(SignInContainer);
