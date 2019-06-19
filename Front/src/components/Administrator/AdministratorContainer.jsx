@@ -19,7 +19,7 @@ const AdministratorContainer = ({ setUsers, setFetching }) => {
    useEffect(() => {
       setFetching(true);
       const token = Cookies.getJSON('token');
-      Get(api + 'admin', onSuccess, onError, !!token ? token : null);
+      Get('admin', onSuccess, onError, !!token ? token : null);
    }, []);
    
    return <Administrator />

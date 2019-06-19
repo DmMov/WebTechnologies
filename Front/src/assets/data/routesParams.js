@@ -1,7 +1,9 @@
-import PickStudyDateContainer from "../../components/PickStudyDate/PickStudyDateContainer";
-import AdministratorContainer from "../../components/Administrator/AdministratorContainer";
-import SignUpContainer from "../../components/_Forms/SignUpContainer";
-import SignInContainer from "../../components/_Forms/SignInContainer";
+import { loadmang } from "../utils/loadmang";
+
+const PickStudyDateContainer = loadmang(() => import('../../components/PickStudyDate/PickStudyDateContainer'));
+const AdministratorContainer = loadmang(() => import('../../components/Administrator/AdministratorContainer'));
+const SignUpContainer = loadmang(() => import('../../components/_Forms/SignUpContainer'));
+const SignInContainer = loadmang(() => import('../../components/_Forms/SignInContainer'));
 
 export const rootRoute = {
   Component: SignInContainer,
