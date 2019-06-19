@@ -4,7 +4,7 @@ import PickStudyDate from './PickStudyDate';
 import Cookies from 'js-cookie';
 import { connect } from 'react-redux';
 import { changeStudyDate } from '../../store/user/actions';
-import { setLoading } from '../../store/actions';
+import { setFetching } from '../../store/actions';
 import UnconfirmedEmailMessage from '../Message/UnconfirmedEmailMessage';
 import withHeader from '../withHeader';
 import { disabledDate } from '../../assets/utils/disabledDate';
@@ -12,12 +12,12 @@ import { Put } from '../../assets/services/request.service';
 import { PickStudyDateContainerPropTypes } from '../../assets/prop-types/PickStudyDateContainer.prop-types';
 import { api } from '../../assets/constants/api';
 
-const PickStudyDateContainer = ({ user, changeStudyDate, setLoading }) => {
+const PickStudyDateContainer = ({ user, changeStudyDate, setFetching }) => {
    const [date, setDate] = useState('');
    const { studyDate, emailConfirmed } = user;
    let localUser = user;
    const onSuccess = data => {
-      setLoading(false);
+      setFetching(false);
       localUser.studyDate = data;
       Cookies.set('user', localUser, { expires: 7 });
       changeStudyDate(data);
@@ -26,7 +26,7 @@ const PickStudyDateContainer = ({ user, changeStudyDate, setLoading }) => {
       console.log(error);
    }
    const onConfirmDate = () => {
-      setLoading(true);
+      setFetching(true);
       Put(`${api}user/set-study-data/${localUser.id}/${date}`, {}, onSuccess, onError, localUser.token);
    }
    const onDateChange = (date, dateStr) => setDate(dateStr);
@@ -55,7 +55,7 @@ const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = { 
    changeStudyDate,
-   setLoading 
+   setFetching 
 };
 
 const ConnectedPickStudyDateContainer = connect(mapStateToProps, mapDispatchToProps)(PickStudyDateContainer)

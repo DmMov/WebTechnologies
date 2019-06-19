@@ -4,7 +4,7 @@ import { set } from 'js-cookie';
 import { isEmail } from 'validator';
 import SignUp from './SignUp';
 import { setUser } from '../../store/user/actions';
-import { setLoading } from '../../store/actions';
+import { setFetching } from '../../store/actions';
 import { generateFormFields } from '../../assets/utils/generateFormFields';
 import { signUpOtherInfo } from '../../assets/data/signUpOtherInfo';
 import { Post } from '../../assets/services/request.service';
@@ -52,14 +52,13 @@ const SignUpContainer = () => {
   const onSubmit = e => {
     e.preventDefault();
     if (isValid(data, validate, validateParams)) {
-      dispatch(setLoading(true));
+      dispatch(setFetching(true));
       Post(
         'auth/registration', 
         data, 
         data => {
-          set('user', data);
           set('token', data.token);
-          dispatch(setUser(data));
+          dispatch(setUser(data.user));
         }, 
         error => {
           if (error.status == 422) {
@@ -70,7 +69,7 @@ const SignUpContainer = () => {
           }
         }
       );
-      dispatch(setLoading(false));
+      dispatch(setFetching(false));
     }
   };
 

@@ -1,0 +1,48 @@
+@keyframes rotate
+  0%
+    transform: rotate(0)
+  100%
+    transform: rotate(360deg)
+
+.fetching
+  position: relative
+  &-text
+    position: absolute
+    transform: translate(-50%, -50%)
+    top: 50%
+    left: 50%
+    width: 100px
+    height: 100px
+    z-index: 2
+    .text
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      font-size: .6rem
+      text-transform: uppercase
+      font-family: 'Montserrat', sans-serif
+      letter-spacing: 1px
+      color: #595959
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      border: 2px solid transparent
+      border-top-color: $accent
+      border-bottom-color: $accent
+      border-radius: 50%
+      animation: rotate 1s linear infinite
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: transparentize(#ffffff, .5)
+    z-index: 5
+  

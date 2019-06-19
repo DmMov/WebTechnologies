@@ -1,28 +1,34 @@
 import { combineReducers } from 'redux';
 import { userReducer } from './user/reducers';
 import { usersReducer } from './users/reducers';
-import { SET_LOADING } from './actions';
+import { SET_LOADING, SET_FETCHING } from './actions';
 
-const defaultState = {
-   loading: false,
-   search: '',
-   sort: ''
+const INITIAL_STATE = {
+  loading: true,
+  fetching: false,
+  search: '',
+  sort: ''
 }
 
-const commonReducer = (state = defaultState, { type, payload }) => {
-   switch (type) {
-      case SET_LOADING: 
-         return {
-            ...state,
-            loading: payload
-         }
-   }
+const commonReducer = (state = INITIAL_STATE, { type, payload }) => {
+  switch (type) {
+    case SET_LOADING: 
+      return {
+        ...state,
+        loading: payload
+      }
+    case SET_FETCHING: 
+      return {
+        ...state,
+        fetching: payload
+      }
+  }
 
-   return state;
+  return state;
 }
 
 export default combineReducers({
-   common: commonReducer,
-   user: userReducer,
-   users: usersReducer,
+  common: commonReducer,
+  user: userReducer,
+  users: usersReducer,
 });

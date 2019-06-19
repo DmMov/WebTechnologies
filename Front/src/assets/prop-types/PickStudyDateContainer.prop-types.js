@@ -3,5 +3,5 @@ import { func } from 'prop-types';
 export const PickStudyDateContainerPropTypes = {
   user,
   changeStudyDate: func.isRequired,
-  setLoading: func.isRequired
+  setFetching: func.isRequired
 }

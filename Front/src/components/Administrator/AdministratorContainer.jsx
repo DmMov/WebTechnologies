@@ -3,21 +3,21 @@ import Cookies from 'js-cookie';
 import Administrator from './Administrator';
 import { connect } from 'react-redux'
 import { setUsers } from '../../store/users/actions';
-import { setLoading } from '../../store/actions';
+import { setFetching } from '../../store/actions';
 import withHeader from '../withHeader';
 import { Get } from '../../assets/services/request.service';
 import { api } from '../../assets/constants/api';
 
-const AdministratorContainer = ({ setUsers, setLoading }) => {
+const AdministratorContainer = ({ setUsers, setFetching }) => {
    const onSuccess = (data) => {
       setUsers(data);
-      setLoading(false);
+      setFetching(false);
    }
    const onError = (error) => {
       console.log(error)
    }
    useEffect(() => {
-      setLoading(true);
+      setFetching(true);
       const token = Cookies.getJSON('token');
       Get(api + 'admin', onSuccess, onError, !!token ? token : null);
    }, []);
@@ -25,6 +25,6 @@ const AdministratorContainer = ({ setUsers, setLoading }) => {
    return <Administrator />
 };
 
-const ConnectedAdminContainer = connect(null, { setUsers, setLoading })(AdministratorContainer)
+const ConnectedAdminContainer = connect(null, { setUsers, setFetching })(AdministratorContainer)
 
 export default withHeader(ConnectedAdminContainer);

@@ -2,7 +2,7 @@ import React from 'react';
 import Field from '../_General/Field';
 import Link from '../_General/Link';
 import Form from '../_General/Form';
-import withSpin from '../withSpin';
+import withFetching from '../withFetching';
 import { FormsPropTypes } from '../../assets/prop-types/Forms.prop-types';
 
 const SignIn = ({ fields, onSubmit }) =>
@@ -13,4 +13,4 @@ const SignIn = ({ fields, onSubmit }) =>
 
 SignIn.propTypes = FormsPropTypes;
 
-export default withSpin(SignIn);
+export default withFetching(SignIn);

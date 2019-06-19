@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { set } from 'js-cookie';
 import { setUser } from '../../store/user/actions';
-import { setLoading } from '../../store/actions';
+import { setFetching } from '../../store/actions';
 import SignIn from './SignIn';
 import { isEmail } from 'validator';
 import { signInOtherInfo } from 'assets/data/signInOtherInfo'
@@ -39,14 +39,13 @@ const SignInContainer = () => {
   const onSubmit = e => {
     e.preventDefault();
     if (isValid(data, validate, validateParams)) {
-      dispatch(setLoading(true));
+      dispatch(setFetching(true));
       Post(
         'auth/sign-in', 
         data, 
         data => {
-          set('user', data);
           set('token', data.token);
-          dispatch(setUser(data));
+          dispatch(setUser(data.user));
         }, 
         error => {
           setErrors(({
@@ -55,7 +54,7 @@ const SignInContainer = () => {
           }));
         }
       );
-      dispatch(setLoading(false));
+      dispatch(setFetching(false));
     }
   };
   return <SignIn fields={fields} onSubmit={onSubmit} />;

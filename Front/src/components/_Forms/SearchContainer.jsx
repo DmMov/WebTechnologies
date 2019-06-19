@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { get } from 'js-cookie';
 import Search from './Search';
 import { setUsers, setSearch } from '../../store/users/actions';
-import { setLoading } from '../../store/actions';
+import { setFetching } from '../../store/actions';
 import { Get } from '../../assets/services/request.service';
 
 const SearchContainer = () => {
@@ -13,12 +13,12 @@ const SearchContainer = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (!!search) {
-      dispatch(setLoading(true));
+      dispatch(setFetching(true));
       Get(
         `admin/search/${search}/${sort ? sort : 'empty'}`, 
         data => {
           dispatch(setUsers(data));
-          dispatch(setLoading(false));
+          dispatch(setFetching(false));
         }, 
         error => console.error(error), 
         get('token')

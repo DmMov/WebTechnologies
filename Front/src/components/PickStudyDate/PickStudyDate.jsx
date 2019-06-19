@@ -1,6 +1,6 @@
 import React from 'react';
 import { DatePicker, Icon } from 'antd';
-import withSpin from '../withSpin';
+import withSpin from '../withFetching';
 import { PickStudyDatePropTypes } from '../../assets/prop-types/PickStudyDate.prop-types';
 
 const PickStudyDate = ({ onDateChange, onConfirmDate, disabledDate, confirmIsVisible }) =>

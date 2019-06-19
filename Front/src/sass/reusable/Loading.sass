@@ -1,0 +1,25 @@
+@keyframes loading
+  0%
+    transform: translate(-100%, -50%)
+  100%
+    transform: translate(100%, -50%)
+.loading
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  height: 100vh
+  background-color: #fff
+  z-index: 99
+  overflow: hidden
+  &::before
+    content: ''
+    position: absolute
+    top: 50%
+    left: 0
+    width: 100%
+    transform: translate(-100%, -50%)
+    height: 2px
+    background-color: $accent
+    animation: loading 2s linear infinite
+

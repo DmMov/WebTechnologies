@@ -36,7 +36,6 @@ namespace Back.Controllers
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             User user = userService.GetUser(id);
 
-
             if (user != null)
             {
                 UserUI userUI = userService.UserToUserUI(user);
@@ -82,7 +81,7 @@ namespace Back.Controllers
                     string token = authService.BuildToken(user);
                     UserUI userUI = userService.UserToUserUI(user);
                     userService.SaveUser(user);
-                    response = Ok(userUI);
+                    response = Ok(new { user = userUI, token });
                 }
             }
             return response;

@@ -7,10 +7,12 @@ import NotFound from './Error/NotFound';
 import { redirectCheck } from '../assets/utils/redirectCheck';
 import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/data/routesParams';
 import { AppPropTypes } from '../assets/prop-types/App.prop-types';
+import Loading from './_General/Loading';
 
-const App = ({ user }) =>
+const App = ({ user, loading }) =>
    <Router>
       <>
+         { loading && <Loading /> }
          <Switch>
             <Route 
                exact 
@@ -57,6 +59,6 @@ const App = ({ user }) =>
    
 App.propTypes = AppPropTypes;
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user, common: { loading } }) => ({ user, loading });
 
 export default connect(mapStateToProps)(App);

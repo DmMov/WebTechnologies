@@ -4,19 +4,23 @@ import { get } from 'js-cookie';
 import rootReducer from './reducers';
 import { setUser } from './user/actions';
 import { Get} from '../assets/services/request.service';
+import { setLoading } from './actions';
 
 export const store =  createStore(rootReducer);
 
 const getUser = () => {
-   const token = get('token');
-   if (typeof(token) !== 'undefined') {
-      Get(
-         'auth', 
-         data => store.dispatch(setUser(data.user)),
-         error => console.log(error),
-         token
-      )
-   }
+  Get(
+    'auth', 
+    data => {
+      store.dispatch(setUser(data.user));
+      store.dispatch(setLoading(false));
+    },
+    error => {
+      store.dispatch(setLoading(false))
+      console.log('error', error);
+    },
+    get('token')
+  );
 }
 
 getUser();
