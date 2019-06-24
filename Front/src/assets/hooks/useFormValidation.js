@@ -32,7 +32,7 @@ export const useFormValidation = (initialState, requiredFields) =>  {
       if (value.trim() == '') {
         setErrors(errors => ({
             ...errors,
-            [name]: 'поле не може бути пустим',
+            [name]: 'this field can not be empty',
           })
         );
         return false;

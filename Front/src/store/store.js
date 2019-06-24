@@ -16,7 +16,7 @@ const getUser = () => {
       store.dispatch(setLoading(false));
     },
     error => {
-      store.dispatch(setLoading(false))
+      store.dispatch(setLoading(false));
       console.log('error', error);
     },
     get('token')
