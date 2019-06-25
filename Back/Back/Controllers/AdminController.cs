@@ -14,8 +14,8 @@ namespace Back.Controllers
     [ApiController, Authorize(Roles = "admin")]
     public class AdminController : ControllerBase
     {
-        UserListService userListService;
-        SortUsersService sortUsersService;
+        private readonly UserListService userListService;
+        private readonly SortUsersService sortUsersService;
 
         public AdminController(UserListService userListService, SortUsersService sortUsersService)
         {
@@ -24,43 +24,33 @@ namespace Back.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetUsers()
-        {
-            List<UserUI> usersUI = userListService.GetUsers();
-            return Ok(usersUI);
-        }
+        public IActionResult GetUsers() => Ok(userListService.GetUsers());
 
-        [HttpGet("sort/{option}/{searchStr}")]
-        public IActionResult GetSortedUsers(string option, string searchStr)
+        [HttpGet("sort/{sort}/{search}")]
+        public IActionResult SortUsers(string sort, string search)
         {
             IActionResult response = BadRequest("error");
             List<UserUI> users = userListService.GetUsers();
-            if (searchStr != "empty")
-            {
-                users = userListService.SearcUsers(searchStr.ToLower(), users);
-            }
-            if (option != "")
-            {
-                users = sortUsersService.Sort(option, users);
-                response = Ok(users);
-            }
-            
+            if (search != "empty")
+                users = userListService.SearcUsers(search.ToLower(), users);
+
+            if (sort != "")
+                response = Ok(new { users = sortUsersService.Sort(sort, users) });
+
             return response;
         }
 
-        [HttpGet("search/{searchStr}/{sortBy}")]
-        public IActionResult SearchUsers(string searchStr, string sortBy)
+        [HttpGet("search/{search}/{sort}")]
+        public IActionResult SearchUsers(string search, string sort)
         {
             IActionResult response = BadRequest("error");
             List<UserUI> users = userListService.GetUsers();
-            if (sortBy != "empty")
-            {
-                users = sortUsersService.Sort(sortBy, users);
-            }
-            if (searchStr != "")
-            {
-                response = Ok(userListService.SearcUsers(searchStr.ToLower(), users));
-            }
+            if (sort != "empty")
+                users = sortUsersService.Sort(sort, users);
+
+            if (search != "")
+                response = Ok(userListService.SearcUsers(search.ToLower(), users));
+
             return response;
         }
     }

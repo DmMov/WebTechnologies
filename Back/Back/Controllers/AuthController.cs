@@ -18,9 +18,9 @@ namespace Back.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        public AuthService authService;
-        public EmailService emailService;
-        public UserService userService;
+        private readonly AuthService authService;
+        private readonly EmailService emailService;
+        private readonly UserService userService;
 
         public AuthController(AuthService authService, EmailService emailService, UserService userService)
         {
@@ -37,26 +37,20 @@ namespace Back.Controllers
             User user = userService.GetUser(id);
 
             if (user != null)
-            {
-                UserUI userUI = userService.UserToUserUI(user);
-                return Ok(new { user = userUI });
-            }
+                return Ok(new { user = userService.UserToUserUI(user) });
+
             return BadRequest();
         }
 
         [HttpPost("sign-in")]
         public IActionResult SignIn(SignInUI signIn)
         {
-            IActionResult response = BadRequest("Incorrect username or password");
+            IActionResult response = BadRequest(new { message = "Incorrect username or password" });
 
             User user = authService.Authenticate(signIn);
 
             if (user != null)
-            {
-                string token = authService.BuildToken(user);
-                UserUI userUI = userService.UserToUserUI(user);
-                response = Ok(new { user = userUI, token });
-            }
+                response = Ok(new { user = userService.UserToUserUI(user), token = authService.BuildToken(user) });
 
             return response;
         }
@@ -64,24 +58,18 @@ namespace Back.Controllers
         [HttpPost("sign-up")]
         public IActionResult SignUp(SignUpUI signUpUI)
         {
-            IActionResult response = BadRequest();
+            IActionResult response = BadRequest(new { message = "invalid data" });
 
             if (signUpUI != null)
             {
-                bool emailIsTaken = authService.EmailIsTaken(signUpUI.Email);
-
-                if (emailIsTaken)
-                {
+                if (authService.EmailIsTaken(signUpUI.Email))
                     response = UnprocessableEntity("email is already taken");
-                }
                 else
                 {
                     User user = userService.InitializeUser(signUpUI);
                     BackgroundJob.Enqueue(() => emailService.SendEmailAsync(user.Email, "Confirm Email", $"http://192.168.0.149:8080/confirm-email/{user.Id}/{user.Code}"));
-                    string token = authService.BuildToken(user);
-                    UserUI userUI = userService.UserToUserUI(user);
                     userService.SaveUser(user);
-                    response = Ok(new { user = userUI, token });
+                    response = Ok(new { user = userService.UserToUserUI(user), token = authService.BuildToken(user) });
                 }
             }
             return response;

@@ -9,7 +9,7 @@ namespace Back.Services
 {
     public class UserService
     {
-        ApplicationContext context;
+        private readonly ApplicationContext context;
 
         public UserService(ApplicationContext context)
         {

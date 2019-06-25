@@ -16,8 +16,8 @@ namespace Back.Controllers
     [ApiController, Authorize(Roles = "user")]
     public class UserController : ControllerBase
     {
-        public UserService userDataService;
-        public EmailService emailService;
+        private readonly UserService userDataService;
+        private readonly EmailService emailService;
 
         public UserController(UserService userDataService, EmailService emailService)
         {
@@ -37,13 +37,11 @@ namespace Back.Controllers
             if (user != null && parsedStudyDate != null)
             {
                 if (moreThenWeek)
-                {
                     BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin in a week"), parsedStudyDate.AddDays(-7));
-                }
+
                 if (moreThenMonth)
-                {
                     BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin in a month"), parsedStudyDate.AddMonths(-1));
-                }
+
                 BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin tomorrow"), new DateTime(parsedStudyDate.Year, parsedStudyDate.Month, parsedStudyDate.Day - 1, 8, 0, 0));
                 user.StudyDate = studyDate;
                 userDataService.UpdateUser(user);
@@ -55,7 +53,7 @@ namespace Back.Controllers
         [HttpPut("confirm-email/{id}/{code}"), AllowAnonymous]
         public IActionResult ConfirmEmail(string id, string code)
         {
-            IActionResult response = BadRequest("error");
+            IActionResult response = BadRequest(new { message = "incorect user id or code" });
             User user = userDataService.GetUser(id);
             if (user != null && user.Code == code)
             {
