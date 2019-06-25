@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { get } from 'js-cookie';
+
 import Search from './Search';
-import { setUsers, setSearch } from '../../store/users/actions';
-import { setFetching } from '../../store/actions';
+import { setUsers } from '../../store/users/actions';
+import { setFetching, setSearch } from '../../store/actions';
 import { Get } from '../../assets/services/request.service';
 
 const SearchContainer = () => {

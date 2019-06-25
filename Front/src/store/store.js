@@ -9,6 +9,8 @@ import { setLoading } from './actions';
 export const store =  createStore(rootReducer);
 
 const getUser = () => {
+  store.dispatch(setLoading(true));
+
   Get(
     'auth', 
     data => {
@@ -23,4 +25,5 @@ const getUser = () => {
   );
 }
 
-getUser();
+if(!!get('token') && typeof(get('token')) !== 'undefined')
+  getUser();

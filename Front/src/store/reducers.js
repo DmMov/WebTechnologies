@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { userReducer } from './user/reducers';
 import { usersReducer } from './users/reducers';
-import { SET_LOADING, SET_FETCHING } from './actions';
+import { SET_LOADING, SET_FETCHING, SET_SEARCH, SET_SORT } from './actions';
 
 const INITIAL_STATE = {
-  loading: true,
+  loading: false,
   fetching: false,
   search: '',
   sort: ''
@@ -21,6 +21,17 @@ const commonReducer = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         fetching: payload
+      }
+    case SET_SEARCH:
+      return {
+        ...state,
+        search: payload
+      }
+        
+    case SET_SORT: 
+      return {
+        ...state,
+        sort: payload
       }
   }
 

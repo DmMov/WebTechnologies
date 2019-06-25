@@ -1,10 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+
 import Table from './Table';
 
 const TableContainer = () => {
-  const { fetching, list } = useSelector(({ common: { fetching }, users: { list } }) => ({ fetching, list }) )
-  return <Table users={list} isLoading={fetching} />
+  const { fetching, users } = useSelector(({ common: { fetching }, users }) => ({ fetching, users }) )
+  return <Table users={users} isLoading={fetching} />
 };
 
 export default TableContainer;

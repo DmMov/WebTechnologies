@@ -1,25 +1,28 @@
 import React from 'react';
-import Sort from './Sort';
 import { connect } from 'react-redux'
-import { setUsers, setSort } from '../../store/users/actions';
-import { setFetching } from '../../store/actions';
 import { get } from 'js-cookie';
-import { Get } from '../../assets/services/request.service';
-import { api } from '../../assets/constants/api';
 
-const SortContainer = ({ searchStr, setSort, setUsers, setFetching }) => {
-   const onSuccess = data => {
-      setSort(value);
-      setUsers(data);
-      setFetching(false);
-   }
-   const onError = error => {
-      console.log(error);
-   }
+import Sort from './Sort';
+import { setUsers } from '../../store/users/actions';
+import { setFetching, setSort } from '../../store/actions';
+import { Get } from '../../assets/services/request.service';
+
+const SortContainer = ({ search, setSort, setUsers, setFetching }) => {
    const onChange = value => {
       setFetching(true);
-      const token = get('token');
-      Get(`${api}admin/sort/${value}/${searchStr ? searchStr : 'empty'}`, onSuccess, onError, token);
+      Get(
+         `admin/sort/${value}/${search ? search : 'empty'}`, 
+         data => {
+            setSort(value);
+            setUsers(data);
+            setFetching(false);
+         }, 
+         error => {
+            console.log(error);
+            setFetching(false);
+         }, 
+         get('token')
+      );
    }
 
    return <Sort onChange={onChange} />
