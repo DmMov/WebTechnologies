@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import { redirectCheck } from '../assets/utils/redirectCheck';
 import { rootRoute, signUpRoute, adminRoute, userRoute } from '../assets/data/routesParams';
 import { AppPropTypes } from '../assets/prop-types/App.prop-types';
-import { loadmang } from '../assets/utils/loadmang';
 
-const ConfirmationControl = loadmang(() => import('./ConfirmationControl'));
-const NotFound = loadmang(() => import('./Error/NotFound'));
-const Page = loadmang(() => import('./_General/Page'));
-const Loading = loadmang(() => import('./_General/Loading'));
+import ConfirmationControl from './ConfirmationControl';
+import NotFound from './Error/NotFound';
+import Page from './_General/Page';
+import Loading from './_General/Loading';
 
 const App = ({ user, loading }) =>
   <Router>

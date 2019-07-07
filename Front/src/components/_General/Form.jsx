@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { FormPropTypes } from '../../assets/prop-types/Form.prop-types';
+import '../../sass/Form';
 
 const Form = ({ formClass, onSubmit, children, buttonText, title }) =>
    <form className={cx('grid', 'form', !!formClass && formClass)} onSubmit={onSubmit}>
