@@ -46,7 +46,7 @@ namespace Back.Controllers
             IActionResult response = BadRequest("error");
             List<UserUI> users = userListService.GetUsers();
             if (sort != "empty")
-                users = sortUsersService.Sort(sort, users);
+                users = sortUsersService.Sort(sort, users).ToList();
 
             if (search != "")
                 response = Ok(userListService.SearcUsers(search.ToLower(), users));

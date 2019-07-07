@@ -31,21 +31,20 @@ namespace Back.Controllers
             User user = userDataService.GetUser(id);
             DateTime parsedStudyDate = DateTime.ParseExact(studyDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-            bool moreThenMonth = parsedStudyDate > DateTime.Now.AddMonths(1);
-            bool moreThenWeek = parsedStudyDate > DateTime.Now.AddDays(7);
+            //bool moreThenMonth = parsedStudyDate > DateTime.Now.AddMonths(1);
+            //bool moreThenWeek = parsedStudyDate > DateTime.Now.AddDays(7);
 
             if (user != null && parsedStudyDate != null)
             {
-                if (moreThenWeek)
-                    BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin in a week"), parsedStudyDate.AddDays(-7));
+                //if (moreThenWeek)
+                //    BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin in a week"), parsedStudyDate.AddDays(-7));
 
-                if (moreThenMonth)
-                    BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin in a month"), parsedStudyDate.AddMonths(-1));
+                //if (moreThenMonth)
+                //    BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin in a month"), parsedStudyDate.AddMonths(-1));
 
-                BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin tomorrow"), new DateTime(parsedStudyDate.Year, parsedStudyDate.Month, parsedStudyDate.Day - 1, 8, 0, 0));
-                user.StudyDate = studyDate;
-                userDataService.UpdateUser(user);
-                return Ok(user.StudyDate);
+                //BackgroundJob.Schedule(() => emailService.SendEmailAsync(user.Email, "Study notification", "Study will begin tomorrow"), new DateTime(parsedStudyDate.Year, parsedStudyDate.Month, parsedStudyDate.Day - 1, 8, 0, 0));
+                //userDataService.UpdateUser(user);
+                return Ok();
             }
             return BadRequest("Error");
         }

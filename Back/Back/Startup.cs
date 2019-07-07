@@ -33,8 +33,8 @@ namespace Back
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:ApplicationConnection"]));
+            services.AddDbContext<CoursesContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:CoursesConnection"]));
             services.AddHangfire(x => x.UseSqlServerStorage(Configuration["ConnectionStrings:HFConnection"]));
             services.AddHangfireServer();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

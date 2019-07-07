@@ -9,7 +9,7 @@ namespace Back.Services
 {
     public class EmailService
     {
-        public async Task SendEmailAsync(string email, string subject, string message)
+        public void SendEmailAsync(string email, string subject, string message)
         {
             var emailMessage = new MimeMessage();
 
@@ -23,10 +23,10 @@ namespace Back.Services
 
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.gmail.com", 465, true);
-                await client.AuthenticateAsync("movchanyukd@gmail.com", "ptubwpamwnnzpikm");
-                await client.SendAsync(emailMessage);
-                await client.DisconnectAsync(true);
+                client.ConnectAsync("smtp.gmail.com", 465, true);
+                client.AuthenticateAsync("movchanyukd@gmail.com", "ptubwpamwnnzpikm");
+                client.SendAsync(emailMessage);
+                client.DisconnectAsync(true);
             }
         }
     }

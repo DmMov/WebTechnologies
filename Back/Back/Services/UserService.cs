@@ -9,9 +9,9 @@ namespace Back.Services
 {
     public class UserService
     {
-        private readonly ApplicationContext context;
+        private readonly CoursesContext context;
 
-        public UserService(ApplicationContext context)
+        public UserService(CoursesContext context)
         {
             this.context = context;
         }
@@ -21,7 +21,6 @@ namespace Back.Services
                 Id = user.Id,
                 Name = user.Name,
                 LastName = user.LastName,
-                StudyDate = user.StudyDate,
                 Role = user.Role,
                 Email= user.Email,
                 EmailConfirmed = user.EmailConfirmed,
@@ -40,7 +39,6 @@ namespace Back.Services
                 Password = signUpUI.Password,
                 Age = signUpUI.Age,
                 RegisteredDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
-                StudyDate = "",
                 Role = "user",
                 Code = Guid.NewGuid().ToString()
             };

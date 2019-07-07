@@ -15,14 +15,13 @@ namespace Back.Services
     public class AuthService
     {
         private readonly IConfiguration configuration;
-        public readonly ApplicationContext context;
+        public readonly CoursesContext context;
 
-        public AuthService(IConfiguration configuration, ApplicationContext context)
+        public AuthService(IConfiguration configuration, CoursesContext context)
         {
             this.configuration = configuration;
             this.context = context;
         }
-
         public string BuildToken(User user)
         {
             Claim[] claims = new[] {
@@ -43,9 +42,7 @@ namespace Back.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
         public User Authenticate(SignInUI signInUI) => context.Users.FirstOrDefault(x => x.Email == signInUI.Email && x.Password == signInUI.Password);
-
         public bool EmailIsTaken(string email) => context.Users.SingleOrDefault(x => x.Email == email) != null;
     }
 }

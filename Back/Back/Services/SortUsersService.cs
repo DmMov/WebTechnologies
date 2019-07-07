@@ -9,35 +9,35 @@ namespace Back.Services
 {
     public class SortUsersService
     {
-        public List<UserUI> SortByName(List<UserUI> usersUI) => usersUI.OrderBy(x => x.LastName).ThenBy(x => x.Name).ToList();
-        public List<UserUI> SortByNameDescending(List<UserUI> usersUI) => usersUI.OrderByDescending(x => x.LastName).ThenByDescending(x => x.Name).ToList();
-        public List<UserUI> SortByEmail(List<UserUI> usersUI) => usersUI.OrderBy(x => x.Email).ToList();
-        public List<UserUI> SortByEmailDescending(List<UserUI> usersUI) => usersUI.OrderByDescending(x => x.Email).ToList();
-        public List<UserUI> SortByAge(List<UserUI> usersUI) => usersUI.OrderBy(x => x.Age).ToList();
-        public List<UserUI> SortByAgeDescending(List<UserUI> usersUI) => usersUI.OrderByDescending(x => x.Age).ToList();
-        public List<UserUI> SortByRegisteredDate(List<UserUI> usersUI) => usersUI.OrderBy(x => DateTime.ParseExact(x.RegisteredDate, "yyyy-MM-dd", CultureInfo.InvariantCulture)).ToList();
-        public List<UserUI> SortByRegisteredDateDescending(List<UserUI> usersUI) => usersUI.OrderByDescending(x => DateTime.ParseExact(x.RegisteredDate, "yyyy-MM-dd", CultureInfo.InvariantCulture)).ToList();
+        private IEnumerable<UserUI> ByName(List<UserUI> usersUI) => usersUI.OrderBy(x => x.LastName).ThenBy(x => x.Name);
+        private IEnumerable<UserUI> ByNameDescending(List<UserUI> usersUI) => usersUI.OrderByDescending(x => x.LastName).ThenByDescending(x => x.Name);
+        private IEnumerable<UserUI> ByEmail(List<UserUI> usersUI) => usersUI.OrderBy(x => x.Email);
+        private IEnumerable<UserUI> ByEmailDescending(List<UserUI> usersUI) => usersUI.OrderByDescending(x => x.Email);
+        private IEnumerable<UserUI> ByAge(List<UserUI> usersUI) => usersUI.OrderBy(x => x.Age);
+        private IEnumerable<UserUI> ByAgeDescending(List<UserUI> usersUI) => usersUI.OrderByDescending(x => x.Age);
+        private IEnumerable<UserUI> ByRegisteredDate(List<UserUI> usersUI) => usersUI.OrderBy(x => DateTime.ParseExact(x.RegisteredDate, "yyyy-MM-dd", CultureInfo.InvariantCulture));
+        private IEnumerable<UserUI> ByRegisteredDateDescending(List<UserUI> usersUI) => usersUI.OrderByDescending(x => DateTime.ParseExact(x.RegisteredDate, "yyyy-MM-dd", CultureInfo.InvariantCulture));
 
-        public List<UserUI> Sort(string option, List<UserUI> users)
+        public IEnumerable<UserUI> Sort(string option, List<UserUI> users)
         {
             switch (option)
             {
-                case "registered-date":
-                    return SortByRegisteredDate(users);
-                case "registered-date-descending":
-                    return SortByRegisteredDateDescending(users);
-                case "name":
-                    return SortByName(users);
-                case "name-descending":
-                    return SortByNameDescending(users);
-                case "email":
-                    return SortByEmail(users);
-                case "email-descending":
-                    return SortByEmailDescending(users);
-                case "age":
-                    return SortByAge(users);
-                case "age-descending":
-                    return SortByAgeDescending(users);
+                case "rd":
+                    return ByRegisteredDate(users);
+                case "rdd":
+                    return ByRegisteredDateDescending(users);
+                case "n":
+                    return ByName(users);
+                case "nd":
+                    return ByNameDescending(users);
+                case "e":
+                    return ByEmail(users);
+                case "ed":
+                    return ByEmailDescending(users);
+                case "a":
+                    return ByAge(users);
+                case "ad":
+                    return ByAgeDescending(users);
                 default:
                     return users;
             }

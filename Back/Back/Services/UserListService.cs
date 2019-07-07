@@ -9,10 +9,10 @@ namespace Back.Services
 {
     public class UserListService
     {
-        private readonly ApplicationContext context;
+        private readonly CoursesContext context;
         private readonly UserService userDataService;
 
-        public UserListService(ApplicationContext context, UserService userDataService)
+        public UserListService(CoursesContext context, UserService userDataService)
         {
             this.userDataService = userDataService;
             this.context = context;

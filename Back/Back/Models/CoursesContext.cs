@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Back.Models
 {
-    public class ApplicationContext : DbContext
+    public class CoursesContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<StudyingDate> StudyingDates { get; set; }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public CoursesContext(DbContextOptions<CoursesContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
@@ -21,7 +23,7 @@ namespace Back.Models
                 new User[]
                 {
                     new User {
-                        Id = Guid.NewGuid().ToString(),
+                        Id = "first",
                         Name = "Dmitriy",
                         LastName = "Movchaniuk",
                         Age = 20,
@@ -29,12 +31,11 @@ namespace Back.Models
                         Password = "admin12345",
                         EmailConfirmed = true,
                         RegisteredDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
-                        StudyDate = "0000-00-00",
                         Role = "admin",
                         Code = "0"
                     },
-                     new User {
-                        Id = Guid.NewGuid().ToString(),
+                    new User {
+                        Id = "second",
                         Name = "Tom",
                         LastName = "Hardy",
                         Age = 20,
@@ -42,7 +43,6 @@ namespace Back.Models
                         Password = "qwerty123",
                         EmailConfirmed = true,
                         RegisteredDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
-                        StudyDate = "",
                         Role = "user",
                         Code = "0"
                     },
