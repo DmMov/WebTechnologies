@@ -1,0 +1,49 @@
+=dg
+  display: grid
+=grid($amount, $size, $gap)
+  display: grid
+  grid-template-columns: repeat($amount, $size)
+  grid-gap: $gap
+=gcenter
+  justify-content: center
+  align-items: center
+=flex
+  display: flex
+  flex-wrap: wrap
+=none
+  background: none
+  border: none
+  outline: none
+=transition($time, $animation)
+  transition: all $time $animation
+=uppercase
+  text-transform: uppercase
+=capitalize
+  text-transform: capitalize
+=fira
+  font-family: 'Fira Sans', sans-serif !important
+=rubik
+  font-family: 'Rubik', sans-serif !important
+=mont
+  font-family: 'Montserrat', sans-serif !important
+=square($size)
+  width: $size
+  height: $size
+=stretched($value)
+  position: absolute
+  top: $value
+  left: $value
+  right: $value
+  bottom: $value
+=position($type, $t, $l, $r, $b)
+  position: $type
+  top: $t
+  left: $l
+  right: $r
+  bottom: $b
+=rotate($deg)
+  transform: rotate($deg)
+=translate($x, $y)
+  transform: translate($x, $y)
+=translRotate($x, $y, $deg)
+  transform: translate($x, $y) rotate($deg)

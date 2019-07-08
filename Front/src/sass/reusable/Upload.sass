@@ -1,0 +1,37 @@
+.upload-block
+  +dg
+  .upload-error-text
+    +capitalize
+    font-size: .75rem
+    text-align: center
+    margin-bottom: 3px
+    color: $error
+    & ~ .upload
+      .upload-btn
+        border-color: $error
+        color: $error
+        background-color: transparentize($error, .8)
+  .upload
+    &-input
+      display: none
+      &:disabled ~ .upload-btn
+        cursor: default
+        border-color: #d7d7d7
+        color: #d7d7d7
+    &-btn
+      border: 1px solid #dddddd
+      border-radius: 4px
+      display: block
+      .upload-icon
+        margin-right: 10px
+        font-size: .9rem
+      &:hover
+        border-color: $accent
+        color: $accent
+  .file-name
+    padding: 5px
+    cursor: pointer
+    +transition(.25s, ease)
+    justify-self: center
+    &:hover
+      color: $accent

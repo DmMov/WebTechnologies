@@ -1,0 +1,19 @@
+.modal
+  +position(fixed, 0, 0, 0, 0)
+  z-index: 100
+  background-color: transparentize(#000000, .2)
+  +dg
+  +gcenter
+  .child-wrap
+    position: relative
+    .close-modal
+      +position(absolute, 0, auto, 20px, auto)
+      +dg
+      +gcenter
+      padding: 0
+      +translRotate(0, -50%, 45deg) 
+      +square(40px)
+      font-size: 1.5rem
+      background-color: $accent
+      color: #ffffff
+      z-index: 1

@@ -5,17 +5,17 @@ import Link from './_General/Link';
 const Header = ({ fullName, onSignOut }) =>
   <header id="main-header">
     <section className="logo-section">
-      <h1 className="logo">courses logo</h1>
+      <img className="logo" src="/images/logo.png" />
     </section>
     <nav className="menu">
+      <li className="menu-item">
+        <Link label="schedule" to="/admin/schedule" />
+      </li>
       <li className="menu-item">
         <Link label="users" to="/admin/users" />
       </li>
       <li className="menu-item">
         <Link label="courses" to="/admin/courses" />
-      </li>
-      <li className="menu-item">
-        <Link label="schedule" to="/admin/schedule" />
       </li>
     </nav>
     <span className="full-name">{fullName}</span>
